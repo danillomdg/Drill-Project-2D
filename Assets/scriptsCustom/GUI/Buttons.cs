@@ -134,6 +134,16 @@ public class Buttons : MonoBehaviour {
 	{
 		int calaboca = 0;
 		apertado[i] = false;
+		if (i == 0 || i == 1)
+		{
+			MovimentoPlayer.TouchPosition.y = 0;
+			MovimentoPlayer.digdown = false;
+		}
+		else if (i == 2 || i == 3)
+		{
+			MovimentoPlayer.TouchPosition.x = 0;
+			MovimentoPlayer.digLR = false;
+		}
 		
 
 		for (int j = 0; j< 4; j++)
@@ -145,6 +155,7 @@ public class Buttons : MonoBehaviour {
 			MovimentoPlayer.digdown = MovimentoPlayer.digLR = false;
 		}
 		else {
+			// 0= up 1 = down 2 = left 3 = right
 			if (apertado[0] ==  true && apertado[1] == apertado[2] == apertado[3] == false) 
 				up();
 			else if (apertado[1] ==  true && apertado[0] == apertado[2] == apertado[3] == false) 
@@ -153,8 +164,7 @@ public class Buttons : MonoBehaviour {
 				left();
 			else if (apertado[3] ==  true && apertado[0] == apertado[2] == apertado[1] == false) 
 				right();
-		//	else if ( apertado[0] == apertado[1] == apertado[2] == apertado[3] == false)
-		//		MovimentoPlayer.DropItHard();
+
 		}
 	}
 

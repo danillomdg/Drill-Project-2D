@@ -29,7 +29,9 @@ public class PlayerControl : MonoBehaviour {
 	public float defaultspeed;
 	public float digspeed;
 
+
 	public float acceleration;
+	private float FDesacceleration = 10f;
 	public float jumpHeight;
 
 	private float rotationSpeed = 15;  // divisores de 180
@@ -143,9 +145,6 @@ public class PlayerControl : MonoBehaviour {
 		}
 		else if (joystickToggle == 1)
 		{
-
-
-
 			if (Input.touchCount > 0) {
 				bool itson = false;
 				bool handsdown = false;
@@ -246,20 +245,27 @@ public class PlayerControl : MonoBehaviour {
 		
 		//APLICANDO CONTROLE NA POSIÇAO X:
 		
-		if (movementLocked == false) {
-			
+		if (movementLocked == false)
+		{	
 			targetspeed.x = (Final.x) * speed;
-			
-			
-			
-			
-		} else {
+		} 
+
+		else {
 			targetspeed.x = 0;
-			
-			
 		}
+
+		float AccSwitcher;
+
+		if (PlayerPhysics3D.grounded == false && targetspeed.x <= 0)
+		{
+			AccSwitcher = FDesacceleration;
+			print ("na logica...");
+		}
+		else AccSwitcher = acceleration;
+		//currentspeed.x = IncrementTowards(currentspeed.x,targetspeed.x,acceleration *5);
+		currentspeed.x = IncrementTowards(currentspeed.x,targetspeed.x,AccSwitcher *5);
+
 		
-		currentspeed.x = IncrementTowards(currentspeed.x,targetspeed.x,acceleration *5);	
 		float MoveAux = transform.position.x + currentspeed.x * Time.deltaTime;
 
 		//CRIADO PRO BIXO NAO CAIR NO LIMBO

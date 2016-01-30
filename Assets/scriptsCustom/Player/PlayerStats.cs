@@ -43,7 +43,6 @@ public class PlayerStats : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		print ("oi gitohubo");
 		ManagerGame = Manager.GetComponent ("GameManager") as GameManager;
 
 

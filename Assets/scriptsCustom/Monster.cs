@@ -30,8 +30,8 @@ public class Monster : Enemy {
 	private int RangeSize = 10;
 	private int SensitiveRange = 8;
 	private int baseHP = 5;
-	private float preSpeed = 4f;
-	private float speed = 4f;
+	private float preSpeed = 3.5f;
+	private float speed = 3.5f;
 	private float upSpeed = 2f;
 	private float attackPower = 25f; //if (timefactor != 0) attackpower = 70f; 
 
