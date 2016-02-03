@@ -586,13 +586,17 @@ public class PolygonGenerator : MonoBehaviour {
 				//CREATE MONSTERSPAWNER
 				if (x==0)
 				{
+
 					EscalaCubo(new Vector2(Coords.x+x,Coords.y),22,-1);
 				}
 				else
+				{
 				EscalaCubo(new Vector2(Coords.x+x,Coords.y),0,-1);
+				}
 			}
 			int RandY2 = Random.Range((int)MaxMinY2.x,(int)MaxMinY2.y);
 			for (int y = 0; y<System.Math.Abs(RandY2); y++){
+				if(Coords.y+y*Mathf.Sign(RandY2) > 2) 
 				EscalaCubo(new Vector2(Coords.x+RandY1,Coords.y+y*Mathf.Sign(RandY2)),0,-1);
 			}
 			

@@ -18,7 +18,7 @@ public class PlayerStats : MonoBehaviour {
 	public float drillPower = 1;
 	public float damageReducer = 0;
 	public float SpeedModifier = 1;
-	private float defaultFuelController = 2.2f;
+	private float defaultFuelController = 1.4f;
 
 
 	public Coletavel ouro, prata, bronze, diamante, ferro;
@@ -133,10 +133,10 @@ public class PlayerStats : MonoBehaviour {
 	{
 
 		dmgEffectTime = defaultDmgTime;
-		ControlColor();
-
-		HP-= value * (1 - damageReducer) ;
-		ManagerGame.ShowDamage (value,holdTime);
+		ControlColor();	
+		float damageTaken = value * (1 - damageReducer);
+		HP-= damageTaken;
+		ManagerGame.ShowDamage (damageTaken,holdTime);
 		//renderer.material.color = Color.red;
 	}
 
@@ -174,9 +174,9 @@ public class PlayerStats : MonoBehaviour {
 		damageReducer = CurrentHull.StatusBonus;
 		print ("damageReducer "+CurrentHull.StatusBonus);
 		FuelTimeFactor = CurrentFuelTank.StatusBonus;
-		print ("filthyTank "+CurrentFuelTank.StatusBonus);
+		print ("filthyTank "+CurrentFuelTank.StatusBonus+" name: "+CurrentFuelTank.Name);
 		drillPower = CurrentDrill.StatusBonus;
-		print ("drillPower "+CurrentDrill.StatusBonus);
+		print ("drillPower "+CurrentDrill.StatusBonus+" name: "+CurrentDrill.Name);
 		CargoSpace = CurrentCargo.StatusBonus;
 		print ("CargoSpace "+CurrentCargo.StatusBonus);
 		SpeedModifier = CurrentRocket.StatusBonus;

@@ -59,6 +59,9 @@ public class GameManager : MonoBehaviour {
 		HullList.Add (Hull.CreateInstance(101,"Basic Hull",200,0,"this is a basic hull"));
 		HullList.Add (Hull.CreateInstance(102,"armored core",1000,0.2f,"Armor ready to combat"));
 		HullList.Add (Hull.CreateInstance(103,"impenetrable shield",13000,0.5f,"Seriously, you dont need this."));
+		HullList.Add (Hull.CreateInstance(104,"Basic Hull 2",200,0,"this is a basic hull"));
+		HullList.Add (Hull.CreateInstance(105,"armored core 2",1000,0.2f,"Armor ready to combat"));
+		HullList.Add (Hull.CreateInstance(106,"impenetrable shield 3",13000,0.5f,"Seriously, you dont need this."));
 		//createFuelTank
 		FuelTankList.Add (FuelTank.CreateInstance(201,"Basic Fuel Tank",200,0,"descrissaum"));
 		FuelTankList.Add (FuelTank.CreateInstance(202,"Big Fuel",1000,0.2f,"descrissaum"));

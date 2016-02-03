@@ -59,6 +59,7 @@ public class bomb : MonoBehaviour {
 			{
 				int crazyX = -1*Mathf.FloorToInt(blowsize.x/2)+j;
 				int crazyY = -1* Mathf.FloorToInt(blowsize.y/2)+i; 
+
 				tScript.blocks[Mathf.FloorToInt(transform.position.x)+crazyX,-1*(Mathf.FloorToInt(transform.position.y)-crazyY) -1] = 0;
 				tScript.update2 = new Vector2(Mathf.RoundToInt(Player.transform.position.x),Mathf.RoundToInt(Player.transform.position.y-tScript.transform.position.y));
 

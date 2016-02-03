@@ -11,6 +11,7 @@ public class WorkshopMenuControl : MonoBehaviour {
 	public GameObject Manager;
 	private GameManager ManagerGame;
 	public Canvas rosto;
+	public RectTransform myPanel;
 
 	public GameObject ConfirmationWindow;
 	public Text ConfirmationText;
@@ -132,13 +133,20 @@ public class WorkshopMenuControl : MonoBehaviour {
 	{
 		for (int i = 0; i<Risto.Count;i++)
 		{
-			float slider = i * -16.3f * 2.75f;
+
+			//float slider = i * -16.3f * 2.75f;
+
 			Vector3 vectoru = SlotElement.transform.position;
 			GameObject TempSlot = Instantiate(SlotElement,vectoru , Quaternion.identity) as GameObject;
-			
+
+			Image mag = TempSlot.GetComponentInChildren<Image>();
+			float slider = i * mag.rectTransform.rect.height * mag.rectTransform.localScale.y * -1;
+			print ("HeighSuraida "+slider);
+
 			SlotList.Add(TempSlot);
-			SlotList[i].transform.SetParent(this.transform,false);
-			SlotList[i].transform.position += new Vector3(0,slider,0);
+			//SlotList[i].transform.SetParent(this.transform,false);
+			SlotList[i].transform.SetParent(myPanel,false);
+		//	SlotList[i].transform.position += new Vector3(0,slider,0);
 
 
 
@@ -231,6 +239,7 @@ public class WorkshopMenuControl : MonoBehaviour {
 	public void equip(PlayerEquip equipping, List<PlayerEquip> Risto)
 	{
 		string Typo = equipping.GetType().Name;
+		print("Type-S: "+Typo);
 		for (int m = 0; m < StatusPlayer.CurrentEquips.Count; m++)
 		{
 			string Typoru = StatusPlayer.CurrentEquips[m].GetType().Name;
@@ -241,6 +250,8 @@ public class WorkshopMenuControl : MonoBehaviour {
 		{
 			StatusPlayer.CurrentHull = equipping as Hull;
 		}
+		else if (Typo == "FuelTank")
+			StatusPlayer.CurrentFuelTank = equipping as FuelTank;
 		else if (Typo == "Drill")
 			StatusPlayer.CurrentDrill = equipping as Drill;
 		else if (Typo == "Cargo")
@@ -250,7 +261,7 @@ public class WorkshopMenuControl : MonoBehaviour {
 		StatusPlayer.CurrentEquips.Add(equipping);
 		clearSlot();
 		OpenSection(Risto);
-		print ("Equipado: "+StatusPlayer.CurrentHull.Name);
+		print ("Equipado: "+equipping.Name);
 		StatusPlayer.atualizeStats();
 
 	}
