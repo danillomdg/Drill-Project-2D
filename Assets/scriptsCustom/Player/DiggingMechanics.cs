@@ -264,7 +264,7 @@ public class DiggingMechanics : MonoBehaviour {
 	{
 		print ("CARGOW "+PlayerStats.CargoSpace);
 		byte bucetinha = tScript.blocks[x,y];
-		PlayerStats.informGotMineral (bucetinha);
+
 		bool coletado = false;
 
 		if (bucetinha == 3){
@@ -311,6 +311,7 @@ public class DiggingMechanics : MonoBehaviour {
 
 	if (coletado == false)
 			print("Deuruim");
+		PlayerStats.informGotMineral (bucetinha,coletado);
 
 	}
 	

@@ -49,7 +49,7 @@ public class EventText : MonoBehaviour {
 		if (fading ==true)
 		{
 			FadeToBlack(20);
-			print ("a we faded");
+
 		}
 			//texto.color.a -=1;
 
@@ -137,7 +137,6 @@ public void lifespam()
 	public void ShowDamage(string msg, float value, float HoldTime)
 	{
 
-		print ("timeholded "+timeholded.ToString("F2"));
 		gameObject.SetActive(true);
 		eventInit = true;
 		if (timeholded == 100)
@@ -179,6 +178,45 @@ public void lifespam()
 			texto.color = Color.red;
 			texto.text = "- "+value.ToString ("F2")+" HP";
 	
-		print ("tecnally showing damage");
+
 	}
+	public void ShowCargoFull()
+	{
+		movingUp = false;
+		int quantity = 1;
+		gameObject.SetActive(true);
+		eventInit = true;  
+		
+		if (timeholded == 100)
+		{
+			movingUp = false;
+			comboStacker  = 0;
+			timeholded = defaultHoldTime;
+		}
+		if (timeholded == defaultHoldTime )
+		{
+			transform.position = startPos;
+			movingUp = true;
+		}
+		
+		
+		comboStacker += quantity;
+		//quantity = damageStacker;
+		if (timeholded > 0)
+		{
+			timeholded -=Time.deltaTime;
+			
+		}
+		else if (timeholded < 0)
+		{
+			movingUp = false;
+			timeholded = 100;
+			//	damageStacker = 0;
+		}
+		
+		
+		texto.color = Color.red;
+		texto.text = "Cargo Full!";
+	}
+	
 }

@@ -60,7 +60,7 @@ public class PolygonGenerator : MonoBehaviour {
 		Minerals.Add(TerrainElement.CreateInstance(6,"diamond",0.80f,200,70));
 		Minerals.Add(TerrainElement.CreateInstance(7,"iron",0.25f,600,120));
 
-		GenTerrain();
+		GenTerrain(96,128);
 		BuildMesh();
 		UpdateMesh();
 	}
@@ -85,8 +85,8 @@ public class PolygonGenerator : MonoBehaviour {
 		
 	}
 	
-	void GenTerrain(){
-		blocks=new byte[96,128];    // original: 96, 128
+	void GenTerrain(int x, int y){
+		blocks=new byte[x,y];    // original: 96, 128
 
 
 		
@@ -129,8 +129,6 @@ public class PolygonGenerator : MonoBehaviour {
 			
 			EscalaCubo(Coords,21,-1);
 		}
-
-
 
 
 		generateMinerals(true);
@@ -176,10 +174,6 @@ public class PolygonGenerator : MonoBehaviour {
 //			
 //			EscalaCubo(Coords,7,-1);
 //		}
-
-
-
-
 
 
 

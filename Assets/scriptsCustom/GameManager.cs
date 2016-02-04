@@ -253,4 +253,8 @@ public class GameManager : MonoBehaviour {
 		textoEvento.ShowMining(Messeige);
 
 	}
+	public void ShowCargoFull()
+	{
+		textoEvento.ShowCargoFull();
+	}
 }

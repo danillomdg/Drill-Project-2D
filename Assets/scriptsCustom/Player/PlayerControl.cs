@@ -259,7 +259,7 @@ public class PlayerControl : MonoBehaviour {
 		if (PlayerPhysics3D.grounded == false && targetspeed.x <= 0)
 		{
 			AccSwitcher = FDesacceleration;
-			print ("na logica...");
+
 		}
 		else AccSwitcher = acceleration;
 		//currentspeed.x = IncrementTowards(currentspeed.x,targetspeed.x,acceleration *5);

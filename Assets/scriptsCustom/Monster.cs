@@ -3,12 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Monster : Enemy {
+	public int waitFrame;
 
 	public GameObject terrain;
 	public GameObject Player;
 	private PolygonGenerator tScript;
 	private PlayerControl PlayerMovement;
 	private PlayerStats StatusPlayer;
+
+	private Animator animata;
 	//public variables:
 	private bool following = false;
 	private bool transcend = false;
@@ -33,11 +36,11 @@ public class Monster : Enemy {
 	private float preSpeed = 3.5f;
 	private float speed = 3.5f;
 	private float upSpeed = 2f;
-	private float attackPower = 25f; //if (timefactor != 0) attackpower = 70f; 
+	private float attackPower = 20f; //if (timefactor != 0) attackpower = 70f; 
 
 	private float flDist = 0.3f; //floor distance
 
-	private float ReactionTime = 0.0f;
+	private float ReactionTime = 0.01f;
 	
 	private Timer attackDelay;
 	private Timer turnDelay;
@@ -49,9 +52,12 @@ public class Monster : Enemy {
 
 	// Use this for initialization
 	void Start () {
+		waitFrame = 0;
 		tScript=terrain.GetComponent("PolygonGenerator") as PolygonGenerator;
 		PlayerMovement = Player.GetComponent("PlayerControl") as PlayerControl;
 		StatusPlayer = Player.GetComponent("PlayerStats") as PlayerStats;
+		animata = this.GetComponent<Animator>();
+		//animata = this.GetComponent("Animator") as Animator;
 		rastro = new List<Vector2>();
 	//	TracingCurves = PlayerMovement.Final;
 		TracePlayer(4);
@@ -64,6 +70,8 @@ public class Monster : Enemy {
 	
 	// Update is called once per frame
 	void Update () {
+
+
 		if (HP <= 0)
 			Deactivate();
 		
@@ -78,24 +86,34 @@ public class Monster : Enemy {
 		if (distanceX >= RangeSize || distanceY >= RangeSize)
 			Deactivate();
 
-		ReadyToAttack(distanceX,distanceY);
-
+		ReadyToAttack(distanceX,distanceY,1f,1f);
+		if (waitFrame == 0)
+			waitFrame +=1;
+		
 	}
 
-	void ReadyToAttack(int distanceX, int distanceY)
+	void ReadyToAttack(int distanceX, int distanceY, float minx,float miny)
 	{
 		Vector2 getPre = attackDelay.GetValues();
 		float timeFactor = Time.deltaTime;
 		if (getPre.x != 0)
 			timeFactor = 1;
-		if (distanceX < 1f && distanceY < 1f)
+		if (gameObject.activeInHierarchy == true)
 		{
+			if (distanceX < minx + 2 && distanceY < miny + 2 && following == true)
+			animata.SetInteger("Kamimasu",1);
+			else animata.SetInteger("Kamimasu",0);
+		}
+		if (distanceX < minx && distanceY < miny)
+		{
+
 			if (!attackDelay.working)
 			{
 			StatusPlayer.TakeDamage(timeFactor * attackPower,0);
 				attackDelay.working = true;
 			}
 		}
+
 	}
 
 	void OnDrawGizmos() {
@@ -185,6 +203,7 @@ public class Monster : Enemy {
 		{
 			if (hit2.transform.gameObject.name == "Boom")
 			{
+				//print ("eu to vendo ta");
 				Boom baku = hit2.transform.gameObject.GetComponent<Boom>();
 				if (baku.pretimer - baku.timer >= ReactionTime)
 				return true;

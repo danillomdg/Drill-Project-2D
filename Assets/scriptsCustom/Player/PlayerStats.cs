@@ -140,10 +140,13 @@ public class PlayerStats : MonoBehaviour {
 		//renderer.material.color = Color.red;
 	}
 
-	public void informGotMineral(int value)
+	public void informGotMineral(int value, bool Condition)
 	{
-
+		if (Condition == true)
 		ManagerGame.ShowMining(value);
+		 else
+			ManagerGame.ShowCargoFull();
+
 	}
 
 	public void InitEquips()
