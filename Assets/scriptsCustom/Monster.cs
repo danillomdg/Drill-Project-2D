@@ -222,6 +222,8 @@ public class Monster : Enemy {
 	public void RaycastPlayer()
 
 	{
+//		Vector3 razao = new Vector3(Player.transform.position.x - transform.position.x,Player.transform.position.y - transform.position.y,0f);
+//		Vector3 origin = new Vector3(transform.position.x,transform.position.y,0.1f);
 		Vector3 razao = new Vector3(Player.transform.position.x - transform.position.x,Player.transform.position.y - transform.position.y,0f);
 		Vector3 origin = new Vector3(transform.position.x,transform.position.y,0.1f);
 
