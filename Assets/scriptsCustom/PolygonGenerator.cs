@@ -144,8 +144,8 @@ public class PolygonGenerator : MonoBehaviour {
 			Vector2 Coords = randomiza(0, (blocks.GetLength(0)/2) ,3, blocks.GetLength(1)/2-10,3); 
 			//	Vector2 Coords = randomiza(0, (blocks.GetLength(0)/2) ,0, (blocks.GetLength(1)/2),3);
 			
-			EscalaCubo(blocks,Coords,-1,-1);
-			EscalaCubo(blocks,new Vector2(Coords.x, Coords.y -2),-1,-1);
+			EscalaCubo(blocks,Coords,20,-1);
+			EscalaCubo(blocks,new Vector2(Coords.x, Coords.y -2),20,-1);
 		}
 
 
@@ -181,6 +181,97 @@ public class PolygonGenerator : MonoBehaviour {
 	}
 
 
+	void GenAddTerrain(byte[,] blocks, int x, int y){
+		//	blocks=new byte[x,y];    // original: 96, 128
+		float divisor = (float)y / (float)SizeY;
+		//print ("WAT? "+y+"WAT? "+SizeY+"WAT? "+divisor);
+		
+		
+		for(int px=0;px<blocks.GetLength(0);px++){
+			int stone= NoiseInt(px,0, 80,15,1);
+			stone+= NoiseInt(px,0, 50,30,1);
+			stone+= NoiseInt(px,0, 10,10,1);
+			stone+=75;
+			
+			
+			int dirt = NoiseInt(px,0, 100f,35,1);
+			dirt+= NoiseInt(px,100, 50,30,1);
+			dirt+=75;
+			
+			
+			for(int py=0;py<blocks.GetLength(1);py++){
+				if (blocks[px,py]!=5 ){
+					if(py<blocks.GetLength(1)){
+						blocks[px, py]=1;
+						
+						if(NoiseInt(px,py,12,16,1)>10){  //dirt spots
+							blocks[px,py]=2;
+							
+						}
+						
+						
+					} else if(py<dirt) {
+						blocks[px,py]=2;
+					}
+					
+					
+				}
+			}
+		}
+		
+		for (int x1 = 0; x1 <=Mathf.RoundToInt(200* divisor);x1++)
+		{
+			print ("Dividar "+Mathf.RoundToInt(200* divisor));
+			Vector2 Coords = randomiza(0, (blocks.GetLength(0)/2) ,3, blocks.GetLength(1)/2,21); 
+			//	Vector2 Coords = randomiza(0, (blocks.GetLength(0)/2) ,0, (blocks.GetLength(1)/2),3);
+			
+			EscalaCubo(blocks,Coords,21,-1);
+		}
+		
+		
+		generateMinerals(blocks,true);
+		
+		
+		for (int x1 = 0; x1 <=Mathf.RoundToInt(50* divisor);x1++)
+		{
+			Vector2 Coords = randomiza(0, (blocks.GetLength(0)/2) ,3, blocks.GetLength(1)/2,3); 
+			//	Vector2 Coords = randomiza(0, (blocks.GetLength(0)/2) ,0, (blocks.GetLength(1)/2),3);
+			
+			EscalaCubo(blocks,Coords,20,-1);
+			EscalaCubo(blocks,new Vector2(Coords.x, Coords.y -2),20,-1);
+		}
+		
+		
+		
+		
+		for (int x1 = 0; x1 <=Mathf.RoundToInt(660* divisor);x1++) //default: 440
+		{
+			//			Vector2 X1 = new Vector2(4,12);
+			//			Vector2 Y2 = new Vector2(-8,8);
+			
+			Vector2 X1 = new Vector2(4,12);
+			Vector2 Y2 = new Vector2(-8,8);
+			generateCaves(blocks,X1,Y2);
+			
+		}
+		
+		//CRIA O CHAO DI PREDA
+		
+		//		for(int py2=blocks.GetLength(1)-20;py2<blocks.GetLength(1)-15;py2++){
+		//		for(int px2=0;px2<blocks.GetLength(0);px2++){
+		//
+		//					blocks[px2,py2]=21;
+		//			}}
+		
+		//MUDA O NUMERO DA GRAMINHA
+//		for (int px2=0; px2 <blocks.GetLength(0);px2++)
+//			blocks[px2,1]=0;
+		
+		//blocks[0,0]=21;
+		for (int i = 0; i < blocks.GetLength (0); i++)
+			blocks[i,blocks.GetLength(1)-1] = 1;
+		
+	}
 
 
 	
@@ -188,7 +279,7 @@ public class PolygonGenerator : MonoBehaviour {
 		for(int px=0;px<blocks.GetLength(0);px++){
 			for(int py=0;py<blocks.GetLength(1);py++){
 				
-				if(blocks[px,py]<0 ){ 
+				if(blocks[px,py]!=0 && blocks[px,py]!=20  ){ 
 					
 					GenCollider(px,py);
 					if(blocks[px,py]==1 ){
@@ -220,7 +311,7 @@ public class PolygonGenerator : MonoBehaviour {
 					else if  (blocks[px,py]==21) 
 						GenSquare(px,py, sRock );
 				}
-				else	if  ((py > 1 && py < blocks.GetLength (1)-1)  ) GenSquare(px,py, hole );
+				else	if  ((py > 1 && py < blocks.GetLength (1)-1) || blocks[px,py]==20 ) GenSquare(px,py, hole );
 
 				 if  (py == 1) GenSquare(px,py, graminha );
 			}
@@ -303,8 +394,8 @@ public class PolygonGenerator : MonoBehaviour {
 				Vector2 Coords = randomiza(0, (addBlocks.GetLength(0)/2) ,3, addBlocks.GetLength(1)/2,3); 
 
 				
-				EscalaCubo(addBlocks,Coords,-1,-1);
-				EscalaCubo(addBlocks,new Vector2(Coords.x, Coords.y -2),-1,-1);
+				EscalaCubo(addBlocks,Coords,20,-1);
+				EscalaCubo(addBlocks,new Vector2(Coords.x, Coords.y -2),20,-1);
 				if (x1 % Eufemismo == 0)
 				yield return null;
 			}
@@ -374,7 +465,7 @@ public class PolygonGenerator : MonoBehaviour {
 				{
 
 
-					if(blocks[px,py]<0 && blocks[px,py]!=22 ){  
+					if(blocks[px,py]!=0 && blocks[px,py]!=20 && blocks[px,py]!=22 ){  
 					
 					GenCollider(px,py);
 
@@ -407,7 +498,7 @@ public class PolygonGenerator : MonoBehaviour {
 							GenSquare(px,py, sRock );
 					
 				}
-					else	if  (py > 1 && py < blocks.GetLength (1)-1 || blocks[px,py]==22 ) GenSquare(px,py, hole );
+					else	if  (py > 1 && py < blocks.GetLength (1)-1 || blocks[px,py]==20 || blocks[px,py]==22 ) GenSquare(px,py, hole );
 					if  (py == 1) GenSquare(px,py, graminha );
 				}
 			}
@@ -430,7 +521,7 @@ public class PolygonGenerator : MonoBehaviour {
 		
 		y = y*-1;
 		//Top
-		if(Block(x,-y-1)<=0  || Block(x,-y-1)==22){
+		if(Block(x,-y-1)==0 || Block(x,-y-1)==20 || Block(x,-y-1)==22){
 
 			colVertices.Add( new Vector3 (x  ,  y  , 1));
 			colVertices.Add( new Vector3 (x + 1 ,  y  , 1));
@@ -444,7 +535,7 @@ public class PolygonGenerator : MonoBehaviour {
 
 
 		//bot
-		if(Block(x,-y+1)<=0  || Block(x,-y+1)==22){
+		if(Block(x,-y+1)==0 || Block(x,-y+1)==20 || Block(x,-y+1)==22){
 			colVertices.Add( new Vector3 (x  ,  y -1 , 0));
 			colVertices.Add( new Vector3 (x + 1 ,  y -1 , 0));
 			colVertices.Add( new Vector3 (x + 1 ,  y -1 , 1 ));
@@ -455,7 +546,7 @@ public class PolygonGenerator : MonoBehaviour {
 		}
 		
 		//left
-		if(Block(x-1,-y)<=0  || Block(x-1,-y)==22){
+		if(Block(x-1,-y)==0 || Block(x-1,-y)==20 || Block(x-1,-y)==22){
 			colVertices.Add( new Vector3 (x  ,  y -1 , 1));
 			colVertices.Add( new Vector3 (x  ,  y  , 1));
 			colVertices.Add( new Vector3 (x  ,  y  , 0 ));
@@ -467,7 +558,7 @@ public class PolygonGenerator : MonoBehaviour {
 		}
 		
 		//right
-		if(Block(x+1,-y)<=0  || Block(x+1,-y)==22){
+		if(Block(x+1,-y)==0 || Block(x+1,-y)==20 || Block(x+1,-y)==22){
 			colVertices.Add( new Vector3 (x +1 ,  y  , 1));
 			colVertices.Add( new Vector3 (x +1 ,  y -1 , 1));
 			colVertices.Add( new Vector3 (x +1 ,  y -1 , 0 ));
@@ -521,7 +612,7 @@ public class PolygonGenerator : MonoBehaviour {
 			{
 				if ((x+x1) > 0  && (x+x1) < blocks.GetLength(0))
 				{
-					if (blocks[x+x1,y]  <= 0  && blocks[x+x1,y]  != 22)
+					if (blocks[x+x1,y]  != 0 && blocks[x+x1,y]  != 20 && blocks[x+x1,y]  != 22)
 						xaux1 += (x1+2);
 				}
 			}
@@ -529,7 +620,7 @@ public class PolygonGenerator : MonoBehaviour {
 			{
 				if ((y+y1) > 0 && (y+y1)  < blocks.GetLength(1))
 				{
-					if (blocks[x,y-y1] <= 0  && blocks[x,y-y1] != 22)
+					if (blocks[x,y-y1] != 0 && blocks[x,y-y1] != 20 && blocks[x,y-y1] != 22)
 						yaux1 += (y1+2);
 				}
 				
@@ -636,7 +727,7 @@ public class PolygonGenerator : MonoBehaviour {
 		byte t2 = (byte) antitype; 
 
 		if (coords.x > 0 && coords.x < blocks.GetLength(0) && coords.y > 0 && coords.y < blocks.GetLength(1)){
-				//	if (blocks[Mathf.FloorToInt(coords.x)   ,   Mathf.FloorToInt(coords.y)]   != t2)
+					if (blocks[Mathf.FloorToInt(coords.x)   ,   Mathf.FloorToInt(coords.y)]   != t2)
 						blocks[Mathf.FloorToInt(coords.x)   ,   Mathf.FloorToInt(coords.y)]   =   t1;
 				}
 

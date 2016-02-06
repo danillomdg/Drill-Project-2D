@@ -35,7 +35,7 @@ public class RockPooler : MonoBehaviour {
 				if (px >=0 && px < tscript.blocks.GetLength(0) && -py >=0 && -py <tscript.blocks.GetLength(1))
 				{
 			
-					if (tscript.blocks[px,-py] == -1)
+					if (tscript.blocks[px,-py] == 20)
 					{
 
 
