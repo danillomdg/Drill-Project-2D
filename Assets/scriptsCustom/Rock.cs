@@ -74,7 +74,7 @@ public class Rock : Enemy {
 			int xis = Mathf.RoundToInt(transform.position.x-0.5f);
 			int yips = Mathf.RoundToInt(transform.position.y+0.5f);
 			try{
-				if (tscript.blocks[xis,-yips] == 20)
+				if (tscript.blocks[xis,-yips] == -1)
 					tscript.blocks[xis,-yips] = 0;
 			}
 			catch (System.Exception e)
@@ -102,7 +102,7 @@ public class Rock : Enemy {
 			int xis = Mathf.RoundToInt(transform.position.x-0.5f);
 			int yips = Mathf.RoundToInt(transform.position.y+0.5f);
 			try{
-				if (tscript.blocks[xis,-yips] == 20)
+				if (tscript.blocks[xis,-yips] == -1)
 					tscript.blocks[xis,-yips] = 0;
 				}
 			catch (System.Exception e)
@@ -122,7 +122,7 @@ public class Rock : Enemy {
 			int xis = Mathf.RoundToInt(transform.position.x-0.5f);
 			int yips = Mathf.RoundToInt(transform.position.y +0.5f);
 			try{ 
-				tscript.blocks[xis,-yips] = 20;
+				tscript.blocks[xis,-yips] = -1;
 			   }	catch (System.Exception e) {}
 			timeru = 0;
 
