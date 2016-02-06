@@ -61,11 +61,12 @@ public class GameManager : MonoBehaviour {
 		HullList.Add (Hull.CreateInstance(103,"impenetrable shield",13000,0.5f,"Seriously, you dont need this."));
 		HullList.Add (Hull.CreateInstance(104,"Basic Hull 2",200,0,"this is a basic hull"));
 		HullList.Add (Hull.CreateInstance(105,"armored core 2",1000,0.2f,"Armor ready to combat"));
-		HullList.Add (Hull.CreateInstance(106,"impenetrable shield 3",13000,0.5f,"Seriously, you dont need this."));
+		HullList.Add (Hull.CreateInstance(106,"Cheater",10,10.5f,"Filthy Cheater!"));
 		//createFuelTank
 		FuelTankList.Add (FuelTank.CreateInstance(201,"Basic Fuel Tank",200,0,"descrissaum"));
 		FuelTankList.Add (FuelTank.CreateInstance(202,"Big Fuel",1000,0.2f,"descrissaum"));
 		FuelTankList.Add (FuelTank.CreateInstance(203,"extra large size",13000,0.5f,"Seriously, you dont need this."));
+		FuelTankList.Add (FuelTank.CreateInstance(204,"Cheater",10,0.995f,"Filthy cheater!"));
 		//createDrill
 		DrillList.Add (Drill.CreateInstance(301,"Basic Drill",200,1,"descrissaum"));
 		DrillList.Add (Drill.CreateInstance(302,"Rock crusher",1000,1.3f,"descrissaum"));

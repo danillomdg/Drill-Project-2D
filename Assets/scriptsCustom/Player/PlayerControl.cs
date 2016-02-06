@@ -85,6 +85,16 @@ public class PlayerControl : MonoBehaviour {
 
 		movement();
 		actions();
+		TooFar();
+	}
+
+	void TooFar()
+	{
+		if (Paragon.terrainUpgradeFinished == true)
+		{
+			if (transform.position.y * -1 > (Paragon.blocks.GetLength(1) - 25))
+				Paragon.testUpgradeMesh ();
+		}
 	}
 
 	void actions()

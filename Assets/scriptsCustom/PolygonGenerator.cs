@@ -44,10 +44,13 @@ public class PolygonGenerator : MonoBehaviour {
 	private int squareCount;
 	//public Vector2 update=new Vector2 (0, -1);
 	public bool update = false;
+	public bool terrainUpgradeFinished = true; 
 	public Vector2 update2 = new Vector2(-1,-1);
 	public int  SizeX = 96; //default: 96
 	public int SizeY = 128;
 
+	private int timesUpgraded = 0;
+	private int TerrainUpgradeY = 100;
 
 
 
@@ -317,18 +320,108 @@ public class PolygonGenerator : MonoBehaviour {
 
  public void testUpgradeMesh()
 	{
-		UpgradeMesh(true,20); 
+		StartCoroutine(UpgradeMesh(true,TerrainUpgradeY));
+		//UpgradeMesh(true,20); 
+		print ("passou daqui");
 	}
 
-	public void UpgradeMesh(bool y, int value)
+
+	public IEnumerator UpgradeMesh(bool y, int value)
 	{
+		terrainUpgradeFinished = false;
 		if (y == true)
 		{
 			byte[,] oldBlocks = blocks;
 			byte[,] addBlocks = new byte[blocks.GetLength(0),value];
 			byte[,] newBlocks = new byte[blocks.GetLength(0),blocks.GetLength(1) + value];
 
-			GenAddTerrain(addBlocks,blocks.GetLength(0),value);
+			//GenAddTerrain(addBlocks,blocks.GetLength(0),value);
+
+			//INICIO DA INSANIDADE
+
+
+
+			float divisor = (float)value / (float)SizeY;
+			
+			for(int px=0;px<addBlocks.GetLength(0);px++){
+				int stone= NoiseInt(px,0, 80,15,1);
+				stone+= NoiseInt(px,0, 50,30,1);
+				stone+= NoiseInt(px,0, 10,10,1);
+				stone+=75;
+
+				int dirt = NoiseInt(px,0, 100f,35,1);
+				dirt+= NoiseInt(px,100, 50,30,1);
+				dirt+=75;
+				
+				for(int py=0;py<addBlocks.GetLength(1);py++){
+					if (addBlocks[px,py]!=5 ){
+						if(py<addBlocks.GetLength(1)){
+							addBlocks[px, py]=1;
+							
+							if(NoiseInt(px,py,12,16,1)>10){  //dirt spots
+								addBlocks[px,py]=2;
+								
+							}
+									
+						} else if(py<dirt) {
+							addBlocks[px,py]=2;
+						}
+					}
+
+				}
+				print ("aptempt x: "+px+ " y : ");
+				yield return null;
+			}
+
+			int Eufemismo = 20;
+			
+			for (int x1 = 0; x1 <=Mathf.RoundToInt(200* divisor);x1++)
+			{
+				print ("Dividar "+Mathf.RoundToInt(200* divisor));
+				Vector2 Coords = randomiza(0, (addBlocks.GetLength(0)/2) ,3, addBlocks.GetLength(1)/2,21); 
+				
+				EscalaCubo(addBlocks,Coords,21,-1);
+				if (x1 % Eufemismo == 0)
+				yield return null;
+			}
+			
+			
+			generateMinerals(addBlocks,true);
+			
+			
+			for (int x1 = 0; x1 <=Mathf.RoundToInt(50* divisor);x1++)
+			{
+				Vector2 Coords = randomiza(0, (addBlocks.GetLength(0)/2) ,3, addBlocks.GetLength(1)/2,3); 
+
+				
+				EscalaCubo(addBlocks,Coords,20,-1);
+				EscalaCubo(addBlocks,new Vector2(Coords.x, Coords.y -2),20,-1);
+				if (x1 % Eufemismo == 0)
+				yield return null;
+			}
+			
+			
+			
+			
+			for (int x1 = 0; x1 <=Mathf.RoundToInt(660* divisor);x1++) //default: 440
+			{
+
+				
+				Vector2 X1 = new Vector2(4,12);
+				Vector2 Y2 = new Vector2(-8,8);
+				generateCaves(addBlocks,X1,Y2);
+				if (x1 % Eufemismo == 0)
+				yield return null;
+				
+			}
+
+			for (int i = 0; i < addBlocks.GetLength (0); i++)
+				addBlocks[i,addBlocks.GetLength(1)-1] = 1;
+
+
+			//FIM DA INSANIDADE
+
+
 			for (int i = 0;i< oldBlocks.GetLength(0);i++)
 				{
 				for (int j = 0;j< oldBlocks.GetLength(1);j++)
@@ -349,15 +442,15 @@ public class PolygonGenerator : MonoBehaviour {
 			print (blocks.GetLength(1));
 			update2 = new Vector2(Mathf.RoundToInt(cam.transform.position.x),Mathf.RoundToInt(cam.transform.position.y-transform.position.y));
 
-//			BuildBlocks((int)update2.x,(int)update2.y * -1,7);
-//			//BuildMesh();
-//			UpdateMesh();
-//			update2.x = -1;
-//
-//			BuildMesh();
-//			UpdateMesh();
+
+	//		BuildMesh();
+	//		UpdateMesh();
 
 		}
+		terrainUpgradeFinished = true;
+		timesUpgraded += 1;
+		print ("Terrain Upgrade number #"+timesUpgraded+": Success!");
+		yield return true;
 
 	}
 

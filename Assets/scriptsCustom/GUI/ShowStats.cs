@@ -23,11 +23,12 @@ public class ShowStats : MonoBehaviour {
 
 	public void showThem()
 	{
+
+			float depth = Player.transform.position.y * -1;
 		texas.text = "Money: $"+StatusPlayer.Money+"\n"+
 					 "HP: "+StatusPlayer.HP+"\n"+
 				"Cargo: "+StatusPlayer.CargoSpace+"%\n"+
-				"FaceLR: "+Monsta.faceLR+"\n"+
-				"FaceUD: "+Monsta.faceUD+"\n"
+				"depth: "+depth.ToString ("F3")+"\n"
 
 				;
 	}
