@@ -18,7 +18,7 @@ public class PlayerStats : MonoBehaviour {
 	public float drillPower = 1;
 	public float damageReducer = 0;
 	public float SpeedModifier = 1;
-	private float defaultFuelController = 1.4f;
+	private float defaultFuelController = 1.8f;
 
 
 	public Coletavel ouro, prata, bronze, diamante, ferro;

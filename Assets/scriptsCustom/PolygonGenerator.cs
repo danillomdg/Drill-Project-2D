@@ -50,7 +50,7 @@ public class PolygonGenerator : MonoBehaviour {
 	public int SizeY = 128;
 
 	private int timesUpgraded = 0;
-	private int TerrainUpgradeY = 100;
+	private int TerrainUpgradeY = 20;
 
 
 
@@ -62,9 +62,9 @@ public class PolygonGenerator : MonoBehaviour {
 
 		Minerals.Add(TerrainElement.CreateInstance(3,"gold",0.65f,400,70));
 		Minerals.Add(TerrainElement.CreateInstance(4,"silver",0.55f,250,70));
-		Minerals.Add(TerrainElement.CreateInstance(5,"bronze",0.0f,150,120));
+		Minerals.Add(TerrainElement.CreateInstance(5,"bronze",0.0f,150,200));
 		Minerals.Add(TerrainElement.CreateInstance(6,"diamond",0.80f,200,70));
-		Minerals.Add(TerrainElement.CreateInstance(7,"iron",0.25f,600,120));  
+		Minerals.Add(TerrainElement.CreateInstance(7,"iron",0.25f,600,200));  
 		GenTerrain(blocks, SizeX,SizeY);
 		BuildMesh();
 		UpdateMesh();
@@ -136,7 +136,7 @@ public class PolygonGenerator : MonoBehaviour {
 		}
 
 
-		generateMinerals(blocks,true);
+		generateMinerals(blocks,true,0,0);
 
 
 		for (int x1 = 0; x1 <=50;x1++)
@@ -149,6 +149,15 @@ public class PolygonGenerator : MonoBehaviour {
 		}
 
 
+		//GENERATE TinnyCaves
+		for (int x1 = 0; x1 <=660;x1++) //default: 440
+		{
+
+			Vector2 X1 = new Vector2(3,5);
+			Vector2 Y2 = new Vector2(-4,4);
+			generateCaves(blocks,X1,Y2,5,49);
+			
+		}
 
 
 		for (int x1 = 0; x1 <=660;x1++) //default: 440
@@ -158,7 +167,7 @@ public class PolygonGenerator : MonoBehaviour {
 
 			Vector2 X1 = new Vector2(4,12);
 			Vector2 Y2 = new Vector2(-8,8);
-			generateCaves(blocks,X1,Y2);
+			generateCaves(blocks,X1,Y2,50,0);
 		
 		}
 
@@ -179,102 +188,8 @@ public class PolygonGenerator : MonoBehaviour {
 			blocks[i,blocks.GetLength(1)-1] = 1;
 		
 	}
-
-
-	void GenAddTerrain(byte[,] blocks, int x, int y){
-		//	blocks=new byte[x,y];    // original: 96, 128
-		float divisor = (float)y / (float)SizeY;
-		//print ("WAT? "+y+"WAT? "+SizeY+"WAT? "+divisor);
-		
-		
-		for(int px=0;px<blocks.GetLength(0);px++){
-			int stone= NoiseInt(px,0, 80,15,1);
-			stone+= NoiseInt(px,0, 50,30,1);
-			stone+= NoiseInt(px,0, 10,10,1);
-			stone+=75;
-			
-			
-			int dirt = NoiseInt(px,0, 100f,35,1);
-			dirt+= NoiseInt(px,100, 50,30,1);
-			dirt+=75;
-			
-			
-			for(int py=0;py<blocks.GetLength(1);py++){
-				if (blocks[px,py]!=5 ){
-					if(py<blocks.GetLength(1)){
-						blocks[px, py]=1;
-						
-						if(NoiseInt(px,py,12,16,1)>10){  //dirt spots
-							blocks[px,py]=2;
-							
-						}
-						
-						
-					} else if(py<dirt) {
-						blocks[px,py]=2;
-					}
-					
-					
-				}
-			}
-		}
-		
-		for (int x1 = 0; x1 <=Mathf.RoundToInt(200* divisor);x1++)
-		{
-			print ("Dividar "+Mathf.RoundToInt(200* divisor));
-			Vector2 Coords = randomiza(0, (blocks.GetLength(0)/2) ,3, blocks.GetLength(1)/2,21); 
-			//	Vector2 Coords = randomiza(0, (blocks.GetLength(0)/2) ,0, (blocks.GetLength(1)/2),3);
-			
-			EscalaCubo(blocks,Coords,21,-1);
-		}
-		
-		
-		generateMinerals(blocks,true);
-		
-		
-		for (int x1 = 0; x1 <=Mathf.RoundToInt(50* divisor);x1++)
-		{
-			Vector2 Coords = randomiza(0, (blocks.GetLength(0)/2) ,3, blocks.GetLength(1)/2,3); 
-			//	Vector2 Coords = randomiza(0, (blocks.GetLength(0)/2) ,0, (blocks.GetLength(1)/2),3);
-			
-			EscalaCubo(blocks,Coords,20,-1);
-			EscalaCubo(blocks,new Vector2(Coords.x, Coords.y -2),20,-1);
-		}
-		
-		
-		
-		
-		for (int x1 = 0; x1 <=Mathf.RoundToInt(660* divisor);x1++) //default: 440
-		{
-			//			Vector2 X1 = new Vector2(4,12);
-			//			Vector2 Y2 = new Vector2(-8,8);
-			
-			Vector2 X1 = new Vector2(4,12);
-			Vector2 Y2 = new Vector2(-8,8);
-			generateCaves(blocks,X1,Y2);
-			
-		}
-		
-		//CRIA O CHAO DI PREDA
-		
-		//		for(int py2=blocks.GetLength(1)-20;py2<blocks.GetLength(1)-15;py2++){
-		//		for(int px2=0;px2<blocks.GetLength(0);px2++){
-		//
-		//					blocks[px2,py2]=21;
-		//			}}
-		
-		//MUDA O NUMERO DA GRAMINHA
-//		for (int px2=0; px2 <blocks.GetLength(0);px2++)
-//			blocks[px2,1]=0;
-		
-		//blocks[0,0]=21;
-		for (int i = 0; i < blocks.GetLength (0); i++)
-			blocks[i,blocks.GetLength(1)-1] = 1;
-		
-	}
-
-
 	
+
 	void BuildMesh(){
 		for(int px=0;px<blocks.GetLength(0);px++){
 			for(int py=0;py<blocks.GetLength(1);py++){
@@ -335,8 +250,6 @@ public class PolygonGenerator : MonoBehaviour {
 			byte[,] addBlocks = new byte[blocks.GetLength(0),value];
 			byte[,] newBlocks = new byte[blocks.GetLength(0),blocks.GetLength(1) + value];
 
-			//GenAddTerrain(addBlocks,blocks.GetLength(0),value);
-
 			//INICIO DA INSANIDADE
 
 
@@ -386,7 +299,7 @@ public class PolygonGenerator : MonoBehaviour {
 			}
 			
 			
-			generateMinerals(addBlocks,true);
+			generateMinerals(addBlocks,true,oldBlocks.GetLength (1),addBlocks.GetLength (1));
 			
 			
 			for (int x1 = 0; x1 <=Mathf.RoundToInt(50* divisor);x1++)
@@ -409,7 +322,7 @@ public class PolygonGenerator : MonoBehaviour {
 				
 				Vector2 X1 = new Vector2(4,12);
 				Vector2 Y2 = new Vector2(-8,8);
-				generateCaves(addBlocks,X1,Y2);
+				generateCaves(addBlocks,X1,Y2,0,0);
 				if (x1 % Eufemismo == 0)
 				yield return null;
 				
@@ -439,12 +352,13 @@ public class PolygonGenerator : MonoBehaviour {
 			}
 
 			blocks = newBlocks;
+			SizeY = newBlocks.GetLength(1);
 			print (blocks.GetLength(1));
 			update2 = new Vector2(Mathf.RoundToInt(cam.transform.position.x),Mathf.RoundToInt(cam.transform.position.y-transform.position.y));
 
 
-	//		BuildMesh();
-	//		UpdateMesh();
+		//	BuildMesh();
+		//	UpdateMesh();
 
 		}
 		terrainUpgradeFinished = true;
@@ -738,15 +652,15 @@ public class PolygonGenerator : MonoBehaviour {
 		return num;
 	}
 
-	void generateMinerals(byte[,] blocks,bool fixedSize)
+	void generateMinerals(byte[,] blocks,bool fixedSize,int StartSize, int PlussSize)
 	{
 		for (int i =0; i< Minerals.Count; i++)
 		{
 			for (int j = 0; j< Minerals[i].quantity;j++)
 				{
-					int randPos = Random.Range(2,SizeY-1);
-					int barreira = Mathf.FloorToInt((SizeY-1) * Minerals[i].rareness);
-					Vector2 gotIt = new Vector2(Random.Range(1,SizeX),randPos);
+				int randPos = Random.Range(2,SizeY+PlussSize-1);
+				int barreira = Mathf.FloorToInt((SizeY+PlussSize-1) * Minerals[i].rareness);
+				Vector2 gotIt = new Vector2(Random.Range(1,SizeX),randPos - StartSize);
 					if (randPos < barreira)
 						{
 
@@ -759,31 +673,46 @@ public class PolygonGenerator : MonoBehaviour {
 							if (fixedSize)	j = j-1;
 							}
 						}
-				else EscalaCubo(blocks,gotIt,Minerals[i].ID,-1);
+				else 
+				
+					EscalaCubo(blocks,gotIt,Minerals[i].ID,-1);
+
+				
 			}
 		}
 	}
 
 
-	void generateCaves(byte[,] blocks,Vector2 MaxMinX1, Vector2 MaxMinY2 ){
+	void generateCaves(byte[,] blocks,Vector2 MaxMinX1, Vector2 MaxMinY2, int MinPosY, int MaxPosY  ){
 		{
-			Vector2 Coords = randomiza(0, (blocks.GetLength(0)) ,3, blocks.GetLength(1)-1,3); 
-			//	Vector2 Coords = randomiza(0, (blocks.GetLength(0)/2) ,0, (blocks.GetLength(1)/2),3);
+			if (MaxPosY < MinPosY || MaxPosY <= 0 )
+				MaxPosY = blocks.GetLength(1)-1;
+			Vector2 Coords = randomiza(0, (blocks.GetLength(0)) ,MinPosY/2,MaxPosY/2,3); 
+
 			int RandX1 = Random.Range(Mathf.FloorToInt(MaxMinX1.x),Mathf.FloorToInt(MaxMinX1.y));
 			int RandY1 = Random.Range(0,RandX1/2);
-			for (int x = 0; x<RandX1; x++){
 
-				//CREATE MONSTERSPAWNER
-				if (x==0)
-				{
+						for (int x = 0; x<RandX1; x++){
 
-					EscalaCubo(blocks,new Vector2(Coords.x+x,Coords.y),22,-1);
-				}
-				else
-				{
-					EscalaCubo(blocks,new Vector2(Coords.x+x,Coords.y),0,-1);
-				}
-			}
+							//CREATE MONSTERSPAWNER
+							if (x==0)
+							{
+								if (Coords.y > 30)
+								{
+									EscalaCubo(blocks,new Vector2(Coords.x+x,Coords.y),22,-1);
+								}
+								else
+								{
+									EscalaCubo(blocks,new Vector2(Coords.x+x,Coords.y),0,-1);
+								}
+								
+							}
+							else
+							{
+								EscalaCubo(blocks,new Vector2(Coords.x+x,Coords.y),0,-1);
+							}
+						}
+					
 			int RandY2 = Random.Range((int)MaxMinY2.x,(int)MaxMinY2.y);
 			for (int y = 0; y<System.Math.Abs(RandY2); y++){
 				if(Coords.y+y*Mathf.Sign(RandY2) > 2) 

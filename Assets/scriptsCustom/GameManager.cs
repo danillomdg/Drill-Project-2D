@@ -47,6 +47,9 @@ public class GameManager : MonoBehaviour {
 
 	float oi = 0;
 	// Use this for initialization
+
+	public int[] SpawnLevel;
+
 	void Start () {
 		
 		cam.transform.position = new Vector3(player.transform.position.x,player.transform.position.y,cam.transform.position.z);
@@ -101,9 +104,10 @@ public class GameManager : MonoBehaviour {
 		DrillWorks = player.GetComponent ("DiggingMechanics") as DiggingMechanics;
 		Megalomaniaco = Megamenu.GetComponent("RefineryMenuControl") as RefineryMenuControl;
 		WorkshopScript = Workshopping.GetComponent ("WorkshopMenuControl") as WorkshopMenuControl;
-		
-		//	newsbox = losto.gameObject.GetComponentInChildren("confirmation box");
-		//	newstext = losto.gameObject.GetComponentInChildren("confirmation text");
+
+		//DEFINE A SPAWNZONE DE MONSTERS
+		SpawnLevel = new int[10];
+		SpawnLevel[0] = 30;
 	}
 	
 	void Update () {

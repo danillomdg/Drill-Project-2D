@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
+
 public class Monster : Enemy {
 	public int waitFrame;
 
