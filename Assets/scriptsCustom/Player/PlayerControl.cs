@@ -38,8 +38,8 @@ public class PlayerControl : MonoBehaviour {
 
 	private float AllertTimer = 0;
 	private float AuxPGTimer = 0;
-
-	private Vector2 currentspeed;
+	[HideInInspector]
+	public Vector2 currentspeed;
 	public Vector2 targetspeed;
 	private Vector2 moveAmount;
 
@@ -86,6 +86,23 @@ public class PlayerControl : MonoBehaviour {
 		movement();
 		actions();
 		TooFar();
+		//testCorroutine (0,transform.position.x);
+	}
+	
+	public IEnumerator AddDigDown(float Caunta, float Posicaum)
+	{
+		Caunta+= Time.deltaTime;
+		
+		print ("position "+Posicaum+" caunta "+Caunta);
+		
+
+			TouchPosition.y = -1;
+			//if (i< 2)
+			yield return new WaitForSeconds(0.4f);
+			TouchPosition.y = 0;
+		
+		print (" terminando");
+
 	}
 
 	void TooFar()
@@ -278,7 +295,7 @@ public class PlayerControl : MonoBehaviour {
 		
 		float MoveAux = transform.position.x + currentspeed.x * Time.deltaTime;
 
-		//CRIADO PRO BIXO NAO CAIR NO LIMBO
+		//CRIADO PRO BIXO NAO CAIR NO LIMBO DAS BORDAS DO TERRENO
 
 		if (MoveAux < 2f || MoveAux > Paragon.SizeX-2)
 		{
@@ -333,14 +350,15 @@ public class PlayerControl : MonoBehaviour {
 				
 			}
 		}
-		
+
+		//PARTE FINAL DO ROLE
 		// Move it motherfucker!
 		if (movementLocked == false) {
 			PlayerPhysics3D.Move(moveAmount * Time.deltaTime);
 			AllertTimer = 0;
 		}
 		if (movementLocked == true) {
-			AllertTimer +=1 * Time.deltaTime;
+			AllertTimer += 1 * Time.deltaTime;
 			
 			if (AllertTimer >=1.5f)
 			{
@@ -378,7 +396,7 @@ public class PlayerControl : MonoBehaviour {
 		
 		
 		
-		
+		//DA REFRESH NO CENARIO
 		if (DeltaPosition != transform.position && isDigging == 0)
 		{
 			AuxPGTimer+= 5 * Time.deltaTime;

@@ -148,7 +148,7 @@ public class DiggingMechanics : MonoBehaviour {
 
 		float ajudinhay = 0;
 		if (keyY == -1 && keyX == 0)
-			ajudinhay = 0.7f; //era 1f
+			ajudinhay = 0.7f; //era 1f - passou pra 0.7f
 		
 		int y=Mathf.RoundToInt(transform.position.y+AuxSizeY+offsetY+ajudinhay);
 
@@ -170,7 +170,7 @@ public class DiggingMechanics : MonoBehaviour {
 					else PlayerMovement.digLR = false;
 
 
-					timer = 0.3f;
+					timer = 0.43f;
 					
 					// DEFINE O "PosState" 
 					if (keyX != 0){
@@ -208,7 +208,10 @@ public class DiggingMechanics : MonoBehaviour {
 
 					if (tScript.blocks[x,y]>2)
 						ColetaMineral(x,y);
-						
+
+					//if (PlayerMovement.digdown == true)
+					//StartCoroutine(PlayerMovement.AddDigDown(0,transform.position.x));
+
 					tScript.blocks[x,y]=0;
 
 

@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
-
+[System.Serializable]
 public class GameManager : MonoBehaviour {
 	private Vector3 position;
 	public GameObject player;
@@ -72,8 +72,8 @@ public class GameManager : MonoBehaviour {
 		FuelTankList.Add (FuelTank.CreateInstance(204,"Cheater",10,0.995f,"Filthy cheater!"));
 		//createDrill
 		DrillList.Add (Drill.CreateInstance(301,"Basic Drill",200,1,"descrissaum"));
-		DrillList.Add (Drill.CreateInstance(302,"Rock crusher",1000,1.3f,"descrissaum"));
-		DrillList.Add (Drill.CreateInstance(303,"Rock Destroyer",13000,1.8f,"Seriously, you dont need this."));
+		DrillList.Add (Drill.CreateInstance(302,"Rock crusher",1000,1.6f,"descrissaum"));
+		DrillList.Add (Drill.CreateInstance(303,"Rock Destroyer",13000,2.0f,"Seriously, you dont need this."));
 		//CreateCargo
 		CargoList.Add (Cargo.CreateInstance(401,"Basic Cargo",200,100,"descrissaum"));
 		CargoList.Add (Cargo.CreateInstance(402,"Bigger Cargo",1000,150,"descrissaum"));
@@ -136,10 +136,11 @@ public class GameManager : MonoBehaviour {
 		menuSwitcherValue = 10;
 		if (Input.GetKeyDown (KeyCode.R))
 		{
-			Application.LoadLevel (Application.loadedLevel);
+			//Application.LoadLevel (Application.loadedLevel);
+			Restarto();
 		}
 		
-		//	Application.LoadLevel (Application.loadedLevel);
+
 	}
 	
 	public void controlTime(){
@@ -216,7 +217,7 @@ public class GameManager : MonoBehaviour {
 	}
 	
 	
-	void Restarto(){
+	public void Restarto(){
 		Application.LoadLevel (Application.loadedLevel);
 	}
 
@@ -231,7 +232,8 @@ public class GameManager : MonoBehaviour {
 	public void ShowDamage(float Value,float holdTime)
 	{
 
-		textoEvento.ShowDamage("",Value, holdTime);
+		StartCoroutine(textoEvento.ShowDamage("",Value, holdTime));
+		textoEvento.SetAllUp();
 	}
 	public void ShowMining(int Value)
 	{
@@ -255,11 +257,15 @@ public class GameManager : MonoBehaviour {
 			Messeige = "iron";
 			break;
 		}
-		textoEvento.ShowMining(Messeige);
-
+		StartCoroutine(textoEvento.ShowMining(Messeige,Value));
+		textoEvento.SetLastMineral (Value);
+		textoEvento.SetAllUp();
+		
 	}
 	public void ShowCargoFull()
 	{
 		textoEvento.ShowCargoFull();
 	}
+
+
 }
