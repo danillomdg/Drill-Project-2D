@@ -156,11 +156,13 @@ public class DiggingMechanics : MonoBehaviour {
 
 
 
-		if(x<tScript.blocks.GetLength(0) && y<tScript.blocks.GetLength(1) && x>=0 && y>=0 && keyY != 1 && (lockAxis ==false || keyX * keyY ==0)){
+		if(x<tScript.blocks.GetLength(0) && y<tScript.blocks.GetLength(1) && x>=0 && y>=0 && keyY != 1 && (lockAxis ==false || keyX * keyY ==0))
+		{
 
 			if ((PlayerPhysics.grounded ) || (PlayerMovement.PosState ==2 && PlayerPhysics.grounded == false) )
 			{
-				if( tScript.blocks[x,y]!=0 && tScript.blocks[x,y]<20 )
+				if( tScript.blocks[x,y]!=0 && tScript.blocks[x,y] != 20 && tScript.blocks[x,y] != 21)
+				//if( tScript.blocks[x,y]!=0  )
 				{
 
 
@@ -206,9 +208,11 @@ public class DiggingMechanics : MonoBehaviour {
 							//que tambem sera usada na hora de bater em pedras que precisam de um drill melhor pra furar
 
 
-					if (tScript.blocks[x,y]>2)
+					if (tScript.blocks[x,y] > 2 && tScript.blocks[x,y] <21)
 						ColetaMineral(x,y);
-
+					else if (tScript.blocks[x,y] >= 50 && tScript.blocks[x,y] <= 52 )
+						PlayerStats.gotPowerUp(tScript.blocks[x,y]);
+					// else if 
 					//if (PlayerMovement.digdown == true)
 					//StartCoroutine(PlayerMovement.AddDigDown(0,transform.position.x));
 

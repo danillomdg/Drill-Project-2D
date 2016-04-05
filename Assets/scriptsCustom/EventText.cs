@@ -227,43 +227,50 @@ public void lifespam()
 	
 
 	}
-	public void ShowCargoFull()
+	public IEnumerator ShowCargoFull()
 	{
 		movingUp = false;
-		int quantity = 1;
+
 		gameObject.SetActive(true);
-		eventInit = true;  
-		
-		if (timeholded == 100)
-		{
-			movingUp = false;
-			comboStacker  = 0;
-			timeholded = defaultHoldTime;
-		}
-		if (timeholded == defaultHoldTime )
-		{
-			transform.position = startPos;
-			movingUp = true;
-		}
-		
-		
-		comboStacker += quantity;
-		//quantity = damageStacker;
-		if (timeholded > 0)
-		{
-			timeholded -=Time.deltaTime;
-			
-		}
-		else if (timeholded < 0)
-		{
-			movingUp = false;
-			timeholded = 100;
-			//	damageStacker = 0;
-		}
-		
-		
+	
 		texto.color = Color.red;
 		texto.text = "Cargo Full!";
+		yield return new WaitForSeconds(preTimar*2);
+		movingUp = false;
+		transform.position = startPos;
+		gameObject.SetActive(false);
+	}
+
+	public IEnumerator ShowLevelUp()
+	{
+		movingUp = false;
+		
+		gameObject.SetActive(true);
+		
+		texto.color = Color.cyan;
+		texto.text = "LEVEL UP!";
+		yield return new WaitForSeconds(preTimar*2);
+		movingUp = false;
+		transform.position = startPos;
+		gameObject.SetActive(false);
+	}
+
+	public IEnumerator ShowPowerUp(byte x)
+	{
+		movingUp = false;
+		
+		gameObject.SetActive(true);
+		
+		texto.color = Color.cyan;
+		if (x == 51)
+		texto.text = "got repair kit!";
+		else if (x == 52)
+		texto.text = "got fuel tank!";
+
+		yield return new WaitForSeconds(preTimar*2);
+		movingUp = false;
+		transform.position = startPos;
+		gameObject.SetActive(false);
 	}
 	
 }

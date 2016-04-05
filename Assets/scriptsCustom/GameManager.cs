@@ -148,7 +148,6 @@ public class GameManager : MonoBehaviour {
 		if (Mathf.FloorToInt (oi) == 1) {
 			oi = 0;
 			print (Mathf.FloorToInt (oi));
-		
 		}
 		
 	}
@@ -264,8 +263,18 @@ public class GameManager : MonoBehaviour {
 	}
 	public void ShowCargoFull()
 	{
-		textoEvento.ShowCargoFull();
+		StartCoroutine(textoEvento.ShowCargoFull());
+	}
+	public void ShowLevelUp()
+	{
+		StartCoroutine(textoEvento.ShowLevelUp());
+		textoEvento.SetAllUp();
 	}
 
+	public void ShowGotPowerUp(byte x)
+	{
+		StartCoroutine(textoEvento.ShowPowerUp(x));
+		textoEvento.SetAllUp();
+	}
 
 }

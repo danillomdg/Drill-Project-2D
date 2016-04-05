@@ -31,6 +31,8 @@ public class Monster : Enemy {
 	float rastroTempo = 0;
 	int maxRastro = 20;
 	bool outOfSight = true;
+	private float xpWorthIt = 40;
+
 	private int RangeSize = 10;
 	private int SensitiveRange = 8;
 	private int baseHP = 5;
@@ -74,7 +76,7 @@ public class Monster : Enemy {
 
 
 		if (HP <= 0)
-			Deactivate();
+			DeadMonster();
 		
 		if (moveIt == true)
 		Move ();
@@ -250,7 +252,11 @@ public class Monster : Enemy {
 
 
 	}
-
+	public void DeadMonster()
+	{
+		Deactivate();
+		StatusPlayer.GetXp (xpWorthIt);
+	}
 
 	public void Deactivate()
 	{

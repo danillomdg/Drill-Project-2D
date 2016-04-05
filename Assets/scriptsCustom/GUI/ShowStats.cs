@@ -24,10 +24,19 @@ public class ShowStats : MonoBehaviour {
 	public void showThem()
 	{
 
+		//IMPORTANTE: COMO USAR A ABREVIAÇAO:
+		//Variavel.ToString ("F2");
+		float razaoXp = StatusPlayer.xp%StatusPlayer.TargetXp;
 			float depth = Player.transform.position.y * -1;
 		texas.text = "Money: $"+StatusPlayer.Money+"\n"+
 					 "HP: "+StatusPlayer.HP+"\n"+
 				"Cargo: "+StatusPlayer.CargoSpace+"%\n"+
+
+				"Xp: "+StatusPlayer.acumulXp+"\n"+
+				//"Xp: "+razaoXp.ToString ("F1")+"%\n"+
+
+
+				"Level: "+StatusPlayer.level +"\n"+
 				"depth: "+depth.ToString ("F3")+"\n"
 
 				;

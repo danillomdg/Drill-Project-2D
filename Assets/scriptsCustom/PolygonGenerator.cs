@@ -38,6 +38,9 @@ public class PolygonGenerator : MonoBehaviour {
 	private Vector2 diamond = new Vector2 (1, 2);
 	private Vector2 iron = new Vector2 (2, 2);
 
+	private Vector2 repairKit = new Vector2 (1, 1);
+	private Vector2 fuelTank = new Vector2 (2, 1);
+
 		
 	
 	public byte[,] blocks;
@@ -149,6 +152,24 @@ public class PolygonGenerator : MonoBehaviour {
 		}
 
 
+		for (int x1 = 0; x1 <=50;x1++)
+		{
+			Vector2 Coords = randomiza(0, (blocks.GetLength(0)/2) ,3, blocks.GetLength(1)/2-10,21); 
+			//	Vector2 Coords = randomiza(0, (blocks.GetLength(0)/2) ,0, (blocks.GetLength(1)/2),3);
+			
+			EscalaCubo(blocks,Coords,51,-1);
+		}
+
+		for (int x1 = 0; x1 <=50;x1++)
+		{
+			Vector2 Coords = randomiza(0, (blocks.GetLength(0)/2) ,3, blocks.GetLength(1)/2-10,21); 
+			//	Vector2 Coords = randomiza(0, (blocks.GetLength(0)/2) ,0, (blocks.GetLength(1)/2),3);
+			
+			EscalaCubo(blocks,Coords,52,-1);
+		}
+		
+		
+
 		//GENERATE TinnyCaves
 		for (int x1 = 0; x1 <=660;x1++) //default: 440
 		{
@@ -198,8 +219,7 @@ public class PolygonGenerator : MonoBehaviour {
 					
 					GenCollider(px,py);
 					if(blocks[px,py]==1 ){
-
-									
+															
 							GenSquare(px,py,tStone );
 					
 							}
@@ -223,8 +243,22 @@ public class PolygonGenerator : MonoBehaviour {
 						GenSquare(px,py,iron );
 					}
 					//STATIC ROCKS:
+
+
 					else if  (blocks[px,py]==21) 
 						GenSquare(px,py, sRock );
+
+//					else if  (blocks[px,py]==50) 
+//						GenSquare(px,py, sRock );
+
+					else if  (blocks[px,py]==51) 
+						GenSquare(px,py, repairKit );
+
+					else if  (blocks[px,py]==52) 
+						GenSquare(px,py, fuelTank );
+
+					
+					
 				}
 				else	if  ((py > 1 && py < blocks.GetLength (1)-1) || blocks[px,py]==20 ) GenSquare(px,py, hole );
 
@@ -410,6 +444,15 @@ public class PolygonGenerator : MonoBehaviour {
 						//STATIC ROCKS:
 						else if  (blocks[px,py]==21) 
 							GenSquare(px,py, sRock );
+
+//					else if  (blocks[px,py]==50) 
+//						GenSquare(px,py, sRock );
+
+					else if  (blocks[px,py]==51) 
+							GenSquare(px,py, repairKit );
+
+					else if  (blocks[px,py]==52) 
+						GenSquare(px,py, fuelTank );
 					
 				}
 					else	if  (py > 1 && py < blocks.GetLength (1)-1 || blocks[px,py]==20 || blocks[px,py]==22 ) GenSquare(px,py, hole );

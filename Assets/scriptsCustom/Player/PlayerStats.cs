@@ -11,6 +11,15 @@ public class PlayerStats : MonoBehaviour {
 	private List<Color> colorz;
 
 	//PRINCIPAL STATS
+	[HideInInspector]
+	public int level = 1;
+	[HideInInspector]
+	public float xp = 0;
+	[HideInInspector]
+	public float acumulXp = 0;
+	[HideInInspector]
+	public float TargetXp = 0;
+
 	public float fuel = 100; 
 	public float CargoSpace = 100;
 	public float HP = 100;
@@ -21,6 +30,12 @@ public class PlayerStats : MonoBehaviour {
 	public float SpeedModifier = 1;
 	private float defaultFuelController = 1.8f;
 
+	//PowerUpsValue
+	[HideInInspector]
+	public float FuelPU = 20;
+
+	[HideInInspector]
+	public float RepairKitPU = 20;
 
 	public Coletavel ouro, prata, bronze, diamante, ferro;
 	public float timerAux;
@@ -67,7 +82,7 @@ public class PlayerStats : MonoBehaviour {
 				colorz.Add (mat.color);	
 		}
 
-
+		TargetXp = (level * level) + (level * 200);
 	}
 	
 	// Update is called once per frame
@@ -96,6 +111,26 @@ public class PlayerStats : MonoBehaviour {
 
 		FuelText.text = Mathf.FloorToInt(fuel).ToString()+"%";
 	}
+
+	public void CalculateLevel()
+	{
+		float SuperiorXp = (level * level) + (level * 200) ; 
+		if ( xp >= SuperiorXp )
+		{
+			level+= 1;
+			xp = 0;
+			TargetXp = (level * level) + (level * 200);
+			ManagerGame.ShowLevelUp();
+		}
+	}
+
+	public void GetXp(float XpGot)
+	{
+		xp +=XpGot;
+		acumulXp +=XpGot;
+		CalculateLevel();
+	}
+
 	public void EmptyCargo()
 	{
 		ouro.quantidade = prata.quantidade = bronze.quantidade = diamante.quantidade = ferro.quantidade = 0;
@@ -139,6 +174,27 @@ public class PlayerStats : MonoBehaviour {
 		HP-= damageTaken;
 		ManagerGame.ShowDamage (damageTaken,holdTime);
 		//renderer.material.color = Color.red;
+	}
+
+	public void gotPowerUp(byte x)
+	{
+		if (x == 51)
+		{
+			HP += RepairKitPU;
+			if (HP> 100)
+				HP = 100;
+
+		}
+		else if (x == 52)
+		{
+			fuel += FuelPU;
+			if (fuel > 100)
+				fuel = 100;
+			print ("refueled");
+		}
+
+		ManagerGame.ShowGotPowerUp(x);
+
 	}
 
 	public void informGotMineral(int value, bool Condition)
