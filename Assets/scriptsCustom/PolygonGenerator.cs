@@ -1,8 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization.Formatters.Binary; 
+using System.IO;
+
 [System.Serializable]
 public class PolygonGenerator : MonoBehaviour {
+
+	public static PolygonGenerator porigon; 
+	public List<PolygonGenerator> savedTerrains = new List<PolygonGenerator>();
+
 	public GameCamera cam;
 
 	public List<Vector3> newVertices = new List<Vector3>();
@@ -55,7 +62,10 @@ public class PolygonGenerator : MonoBehaviour {
 	private int timesUpgraded = 0;
 	private int TerrainUpgradeY = 20;
 
-
+	void Awake() {
+			porigon = this;
+		print ("porigonized");
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -83,6 +93,10 @@ public class PolygonGenerator : MonoBehaviour {
 		}
 	
 	}
+
+
+
+
 
 
 	

@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
+
 [System.Serializable]
 public class PlayerStats : MonoBehaviour {
 	public GameObject Manager;

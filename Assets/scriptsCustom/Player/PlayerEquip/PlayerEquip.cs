@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
+[System.Serializable]
 public class PlayerEquip : ScriptableObject {
 	public int ID = 0;
 	public int type; 

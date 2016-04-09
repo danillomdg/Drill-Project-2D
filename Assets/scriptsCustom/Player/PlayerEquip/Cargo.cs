@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[System.Serializable]
 public class Cargo : PlayerEquip {
 
 	// Use this for initialization

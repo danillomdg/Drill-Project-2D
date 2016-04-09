@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[System.Serializable]
 public class Drill : PlayerEquip {
 
 	// Use this for initialization
