@@ -4,20 +4,15 @@ using System.Collections;
 [System.Serializable]
 public class Rocket : PlayerEquip {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-	public static Rocket CreateInstance(int ID, string Name, float Price, float StatusBonus, string Description) 
+	public Rocket(int ID, string Name, float Price, float StatusBonus, string Description) : base(ID,Name,Price,StatusBonus, Description)
 	{
-		var data = ScriptableObject.CreateInstance<Rocket>();
-		data.DefineEquip(ID,Name,Price,StatusBonus,Description) ;
-		
-		return data;
+		this.ID = ID;
+	
+		this.Name = Name;
+		this.Price = Price;
+		this.StatusBonus = StatusBonus;
+		this.Description = Description;
 	}
+
+
 }

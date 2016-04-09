@@ -4,22 +4,15 @@ using System.Collections;
 [System.Serializable]
 public class Hull : PlayerEquip {
 
-	// Use this for initialization
-	void Start () {
-		ID = 0;
-
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
-	public static Hull CreateInstance(int ID, string Name, float Price, float StatusBonus, string Description) 
+	public Hull(int ID,  string Name, float Price, float StatusBonus, string Description) : base(ID,Name,Price,StatusBonus, Description)
 	{
-		var data = ScriptableObject.CreateInstance<Hull>();
-		data.DefineEquip(ID,Name,Price,StatusBonus,Description) ;
-		
-		return data;
+		this.ID = ID;
+
+		this.Name = Name;
+		this.Price = Price;
+		this.StatusBonus = StatusBonus;
+		this.Description = Description;
 	}
+
+
 }

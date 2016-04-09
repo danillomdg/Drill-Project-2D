@@ -4,21 +4,14 @@ using System.Collections;
 [System.Serializable]
 public class Cargo : PlayerEquip {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+	public Cargo(int ID,  string Name, float Price, float StatusBonus, string Description) : base(ID,Name,Price,StatusBonus, Description)
+	{
+		this.ID = ID;
+		this.Name = Name;
+		this.Price = Price;
+		this.StatusBonus = StatusBonus;
+		this.Description = Description;
 	}
 
-	public static Cargo CreateInstance(int ID, string Name, float Price, float StatusBonus, string Description) 
-	{
-		var data = ScriptableObject.CreateInstance<Cargo>();
-		data.DefineEquip(ID,Name,Price,StatusBonus,Description) ;
-		
-		return data;
-	}
+
 }

@@ -9,9 +9,13 @@ using System.IO;
 public class SaveLoad  : MonoBehaviour{
 	public GameObject terrain;
 	public GameObject Player;
+	public GameCamera cam;
+
 	private PolygonGenerator Porigon;
 	private GameManager ManagerGame;
 	private PlayerStats StatusPlayer;
+	private PlayerControl Contororu;
+	private PlayerPhysics3D Physx;
 
 	public static List<PolygonGenerator> savedTerrains = new List<PolygonGenerator>();
 	public static List<PlayerStats> savedStats = new List<PlayerStats>();
@@ -22,12 +26,18 @@ public class SaveLoad  : MonoBehaviour{
 	void Start()
 	{
 		StatusPlayer = Player.GetComponent("PlayerStats") as PlayerStats;
+		Contororu = Player.GetComponent("PlayerControl") as PlayerControl;
+		Physx = Player.GetComponent("PlayerPhysics3D") as PlayerPhysics3D;
 		Porigon=terrain.GetComponent("PolygonGenerator") as PolygonGenerator;
 
 
 	}
 
 	public void Save() {
+
+		//REMOVE THIS IF YOU WANT MULTIPLE SAVEFILES
+
+		savedGames.Clear();
 		GameData saving = new GameData();
 		//terrain
 		saving.blocks = Porigon.blocks;
@@ -66,6 +76,9 @@ public class SaveLoad  : MonoBehaviour{
 
 	public void Load() {
 		if(File.Exists(Application.persistentDataPath + "/savedGames.gd")) {
+
+
+
 			BinaryFormatter bf = new BinaryFormatter();
 			FileStream file = File.Open(Application.persistentDataPath + "/savedGames.gd", FileMode.Open);
 			savedGames = (List<GameData>)bf.Deserialize(file);
@@ -98,7 +111,13 @@ public class SaveLoad  : MonoBehaviour{
 			StatusPlayer.CurrentEquips = loading.CurrentEquips  ;
 			StatusPlayer.BuyedEquips = loading.BuyedEquips  ;
 
-			Porigon.update2.x = 1;
+			Player.transform.position = new Vector3(9.5f,-1f,0);
+			cam.transform.position = new Vector3(9.5f,-1f,cam.transform.position.z);
+			Porigon.update2.x = 0;
+
+
+
+		
 			print("Done! games saved: "+savedGames.Count);
 		}
 	}
