@@ -125,10 +125,57 @@ public class WorkshopMenuControl : MonoBehaviour {
 		{
 			clearSlot();
 			ElementSession = 5;
+			OpenItens(ManagerGame.ItensList);
 
 		}
 	}
 
+	public void OpenItens(List<PlayerItem> Risto)
+	{
+		for (int i = 0; i<Risto.Count;i++)
+		{
+			Vector3 vectoru = SlotElement.transform.position;
+			GameObject TempSlot = Instantiate(SlotElement,vectoru , Quaternion.identity) as GameObject;
+			Image mag = TempSlot.GetComponentInChildren<Image>();
+			float slider = i * mag.rectTransform.rect.height * mag.rectTransform.localScale.y * -1;		
+			SlotList.Add(TempSlot);
+			SlotList[i].transform.SetParent(myPanel,false);
+
+			Text textaum;
+			Button battaum;
+			Button butaum;
+
+			int destiny = 1; // 1 = comprar; 2 = nao pode comprar; 3 = equipando 4 = equipar	
+			if (StatusPlayer.Money < Risto[i].Price)
+				destiny = 2;
+			int CurrentI = i;
+			
+			textaum = SlotList[i].GetComponentInChildren<Text>();
+			battaum = SlotList[i].GetComponentsInChildren<Button>()[0];
+			battaum.onClick.AddListener (delegate { ShowItemDescription(Risto[CurrentI],battaum); });
+			textaum.text = Risto[i].Name;
+			
+			
+			textaum = SlotList[i].GetComponentsInChildren<Button>()[1].GetComponentInChildren<Text>();
+			butaum = SlotList[i].GetComponentsInChildren<Button>()[1];
+			
+			
+			if (destiny == 1)
+			{
+				textaum.text = "$"+Risto[i].Price;
+				butaum.image.color = Color.green;
+				butaum.onClick.AddListener (delegate { buyItem(Risto[CurrentI],Risto); });
+			}
+			else if (destiny == 2)
+			{
+				textaum.text = "$"+Risto[i].Price;
+				butaum.image.color = Color.red;
+			}
+
+		}
+					
+		}
+		
 	public void OpenSection(List<PlayerEquip> Risto)
 	{
 		for (int i = 0; i<Risto.Count;i++)
@@ -220,6 +267,11 @@ public class WorkshopMenuControl : MonoBehaviour {
 
 		DescriptionText.text = showing.Description;
 	}
+	public void ShowItemDescription(PlayerItem showing, Button bataum)
+	{
+		
+		DescriptionText.text = showing.Description;
+	}
 
 	public void foi(int oi)
 	{
@@ -234,6 +286,36 @@ public class WorkshopMenuControl : MonoBehaviour {
 		print ("Comprado "+buying.Name+" por $"+buying.Price );
 		clearSlot();
 		OpenSection(Risto);
+	}
+
+	public void buyItem(PlayerItem buying, List<PlayerItem> Risto)
+	{
+
+
+		StatusPlayer.Money -= buying.Price;
+		bool teste = false;
+		for (int i = 0; i < StatusPlayer.CurrentItens.Count; i++)
+		{
+			if (buying.ID == StatusPlayer.CurrentItens[i].ID)
+			{
+				teste = true;
+				StatusPlayer.CurrentItens[i].Quantity += buying.Quantity;
+				if (StatusPlayer.CurrentItens[i].Quantity > 99)
+					StatusPlayer.CurrentItens[i].Quantity = 99;
+				print ("added quantity");
+			}
+		}
+		if (teste != true)
+		{
+			StatusPlayer.CurrentItens.Add(buying);
+			print ("buyed new");
+		}
+
+			
+		print ("Comprado "+buying.Name+" por $"+buying.Price );
+		clearSlot();
+		OpenItens(Risto);
+		StatusPlayer.HandlerItem.ItemQuantity();
 	}
 
 	public void equip(PlayerEquip equipping, List<PlayerEquip> Risto)

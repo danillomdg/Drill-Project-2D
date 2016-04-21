@@ -76,6 +76,7 @@ public class bomb : MonoBehaviour {
 
 	public void DropIt()
 	{
+		
 		if (dropped == false)
 		{
 		Vector3 semiposition = Player.transform.position;

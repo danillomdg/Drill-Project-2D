@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour {
 	public List<PlayerEquip> DrillList = new List<PlayerEquip>(); 
 	public List<PlayerEquip> CargoList = new List<PlayerEquip>(); 
 	public List<PlayerEquip> RocketList = new List<PlayerEquip>(); 
+	public List<PlayerItem> ItensList = new List<PlayerItem>();
 
 	float oi = 0;
 	// Use this for initialization
@@ -84,6 +85,11 @@ public class GameManager : MonoBehaviour {
 		RocketList.Add (new Rocket(503,"Space Traveler",13000,1.8f,"Seriously, you dont need this."));
 
 		StatusPlayer.InitEquips();
+
+		//CreateItens
+		ItensList.Add (new PlayerItem(1001, 1,"Basic Bomb",50,99,"Blow some shit up!"));
+		ItensList.Add (new Teleport(1009, 1,"Teleport Module",50,1,"Fucking Teleport!!"));
+		StatusPlayer.InitItens();
 
 		//DEFINE O PREÇO
 		StatusPlayer.ouro.preço = goldPrice;

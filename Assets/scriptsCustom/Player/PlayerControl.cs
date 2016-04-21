@@ -48,7 +48,6 @@ public class PlayerControl : MonoBehaviour {
 	private Animator animator;
 	private DiggingMechanics DiggingMechanics;
 	private PolygonGenerator Paragon;
-	private PlayerItens PlayerItens;
 
 	private Vector2 TouchPositionAux;
 	private Vector2 TouchPositionAux2;
@@ -71,7 +70,7 @@ public class PlayerControl : MonoBehaviour {
 		Paragon = terrain.GetComponent("PolygonGenerator") as PolygonGenerator;  
 		animator = GetComponent<Animator>();
 		DiggingMechanics = GetComponent<DiggingMechanics>();
-		PlayerItens = GetComponent<PlayerItens>();
+
 		movementLocked = false;
 		PosState = 0;
 		rastro = new List<Vector2>();
@@ -117,8 +116,9 @@ public class PlayerControl : MonoBehaviour {
 	void actions()
 	{
 		if (Input.GetKeyDown("space"))
-			PlayerItens.bombie.DropIt();
-
+			StatusPlayer.HandlerItem.UseItem();
+		if (Input.GetKeyDown("q"))
+			StatusPlayer.ToggleIten();
 	}
 	
 
@@ -421,12 +421,6 @@ public class PlayerControl : MonoBehaviour {
 			return (dir == Mathf.Sign(target-n))? n: target; // if n has now passed target then return target, otherwise return n
 
 		}
-	}
-
-	public void DropItHard()
-	{
-		print ("Trigged");
-		PlayerItens.bombie.DropIt();
 	}
 
 

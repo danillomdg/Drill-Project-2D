@@ -8,6 +8,7 @@ public class Buttons : MonoBehaviour {
 	public GameObject player;
 	private PlayerControl MovimentoPlayer;
 	private PlayerPhysics3D FisicaPlayer;
+	private ItemHandler HandlerItem;
 	private DiggingMechanics DrillWorks;
 	public bool[] apertado; 		// 0= up 1 = down 2 = left 3 = right
 	public Image Up, Down, Left, Right;
@@ -15,6 +16,7 @@ public class Buttons : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		HandlerItem = player.GetComponent ("ItemHandler") as ItemHandler;
 		MovimentoPlayer = player.GetComponent ("PlayerControl") as PlayerControl;
 		FisicaPlayer = player.GetComponent ("PlayerPhysics3D") as PlayerPhysics3D;
 		DrillWorks = player.GetComponent ("DiggingMechanics") as DiggingMechanics;
@@ -56,7 +58,7 @@ public class Buttons : MonoBehaviour {
 				print(EventSystem.current.currentSelectedGameObject);
 			}
 				if (!EventSystem.current.IsPointerOverGameObject (Input.GetTouch(i).fingerId)&& !EventSystem.current.IsPointerOverGameObject (-1))
-			   dropIt();
+			   HandlerItem.UseItem();
 			}
 
 			}
@@ -188,10 +190,7 @@ public class Buttons : MonoBehaviour {
 		print (" xmin : "+recto.xMin+" xmax : "+recto.xMax+" ymin : "+ recto.yMin +" ymax : "+recto.yMax);
 
 	}
-	public void dropIt()
-	{
-		MovimentoPlayer.DropItHard();
-	}
+
 
 //	void DrawQuad(Rect position, Color color) {
 //		Texture2D texture = new Texture2D(1, 1);

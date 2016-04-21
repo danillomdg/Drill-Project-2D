@@ -7,6 +7,7 @@ using System.IO;
 [System.Serializable]
 public class PolygonGenerator : MonoBehaviour {
 
+	public bool editorMode;
 	public static PolygonGenerator porigon; 
 	public List<PolygonGenerator> savedTerrains = new List<PolygonGenerator>();
 
@@ -59,6 +60,9 @@ public class PolygonGenerator : MonoBehaviour {
 	public int  SizeX = 96; //default: 96
 	public int SizeY = 128;
 
+	public int  EditorSizeX = 20; //default: 96
+	public int EditorSizeY = 22;
+
 	private int timesUpgraded = 0;
 	private int TerrainUpgradeY = 20;
 
@@ -69,6 +73,9 @@ public class PolygonGenerator : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		if (
+			editorMode == false)
+		{
 		blocks=new byte[SizeX,SizeY];
 		mesh = GetComponent<MeshFilter> ().mesh;
 		col = GetComponent<MeshCollider> ();
@@ -81,6 +88,18 @@ public class PolygonGenerator : MonoBehaviour {
 		GenTerrain(blocks, SizeX,SizeY);
 		BuildMesh();
 		UpdateMesh();
+
+		}
+		else 
+		{
+			blocks=new byte[EditorSizeX,EditorSizeY];
+			mesh = GetComponent<MeshFilter> ().mesh;
+			col = GetComponent<MeshCollider> ();
+			GenEditorTerrain(blocks, EditorSizeX,EditorSizeY);
+			BuildMesh();
+			UpdateMesh();
+
+		}
 	}
 	
 	void Update(){
@@ -97,14 +116,30 @@ public class PolygonGenerator : MonoBehaviour {
 
 
 
-
-
-	
 	int NoiseInt (int x, int y, float scale, float mag, float exp){
 		
 		return (int) (Mathf.Pow ((Mathf.PerlinNoise(x/scale,y/scale)*mag),(exp) ));
 		
 		
+	}
+
+	void GenEditorTerrain(byte[,] blocks, int x, int y)
+	{
+		for(int px=0;px<blocks.GetLength(0);px++)
+		{
+			for(int py=2;py<blocks.GetLength(1);py++)
+			{
+				blocks[px, py]=1;
+			}
+			
+		}
+		
+	}
+
+	public void EditorUpdateMesh()
+	{
+		BuildMesh();
+		UpdateMesh();
 	}
 	
 	void GenTerrain(byte[,] blocks, int x, int y){

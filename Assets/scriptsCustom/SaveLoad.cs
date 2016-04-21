@@ -9,7 +9,6 @@ using System.IO;
 public class SaveLoad  : MonoBehaviour{
 	public GameObject terrain;
 	public GameObject Player;
-	public GameCamera cam;
 
 	private PolygonGenerator Porigon;
 	private GameManager ManagerGame;
@@ -111,8 +110,7 @@ public class SaveLoad  : MonoBehaviour{
 			StatusPlayer.CurrentEquips = loading.CurrentEquips  ;
 			StatusPlayer.BuyedEquips = loading.BuyedEquips  ;
 
-			Player.transform.position = new Vector3(9.5f,-1f,0);
-			cam.transform.position = new Vector3(9.5f,-1f,cam.transform.position.z);
+			StatusPlayer.ChangePosition(new Vector3(9.5f,0.5f,0));
 			Porigon.update2.x = 0;
 
 

@@ -7,6 +7,8 @@ using System.Collections.Generic;
 public class PlayerStats : MonoBehaviour {
 	public GameObject Manager;
 	private GameManager ManagerGame;
+	//public PlayerItens PlayerItens;
+	public ItemHandler HandlerItem;
 
 	private SkinnedMeshRenderer[] cubez;
 	private List<Color> colorz;
@@ -57,17 +59,27 @@ public class PlayerStats : MonoBehaviour {
 	public Rocket CurrentRocket;
 
 	public List<PlayerEquip> CurrentEquips, BuyedEquips;
+	public List<PlayerItem> CurrentItens;
+	public int SelectedItem;
+	public int SelectedItemID;
+
+
+
+	//ADDED AFTER CREATION OF SAVELOAD:
+	public List<Vector2> PlacesToGo;	
 
 	// Use this for initialization
 	void Start () {
 		ManagerGame = Manager.GetComponent ("GameManager") as GameManager;
-
+		//PlayerItens = GetComponent<PlayerItens>();
+		HandlerItem = GetComponent<ItemHandler>();
 
 		ouro =  new Coletavel();
 		prata = new Coletavel();
 		bronze = new Coletavel();
 		diamante = new Coletavel();
 		ferro = new Coletavel();
+
 		fuel = 100;
 		HP = 100;
 		timerAux = 10;
@@ -84,6 +96,14 @@ public class PlayerStats : MonoBehaviour {
 		}
 
 		TargetXp = (level * level) + (level * 200);
+		Vector2 initialPosition = new Vector2(9.5f,1f);
+		PlacesToGo.Add(initialPosition);
+	}
+
+	public void ChangePosition(Vector3 position)
+	{
+		gameObject.transform.position = position;
+		ManagerGame.cam.transform.position = new Vector3(position.x,position.y,ManagerGame.cam.transform.position.z);
 	}
 	
 	// Update is called once per frame
@@ -227,6 +247,28 @@ public class PlayerStats : MonoBehaviour {
 		BuyedEquips.Add(CurrentCargo);
 		BuyedEquips.Add(CurrentRocket);
 		
+	}
+
+	public void InitItens()
+	{
+		CurrentItens.Add (ManagerGame.ItensList[0] as PlayerItem);
+		SelectedItem = 0;
+		SelectedItemID = CurrentItens[SelectedItem].ID;
+		HandlerItem.ItemQuantity();
+	}
+
+	public void ToggleIten()
+	{
+		int counto = CurrentItens.Count - 1;
+		SelectedItem +=1;
+		if (SelectedItem > counto)
+		SelectedItem = 0;
+
+	//	return CurrentItens[SelectedItem].ID;
+		SelectedItemID = CurrentItens[SelectedItem].ID;
+		print ("SelectedID: "+SelectedItemID);
+		HandlerItem.ItemQuantity();
+		HandlerItem.changeIcon(SelectedItemID);
 	}
 
 
