@@ -6,6 +6,8 @@ using System.IO;
 
 [System.Serializable]
 public class GameData {
+	public string Name;
+
 	public static GameData current;
 	//PolygonGenerator
 	public byte[,] blocks;

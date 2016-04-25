@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Xml;
+using System.Xml.Serialization;
 using System.Collections;
 using System.Collections.Generic; 
 using System.Runtime.Serialization.Formatters.Binary; 
@@ -14,7 +16,7 @@ public class EditorSaveLoad  : MonoBehaviour{
 	public Text inPutin;
 	private PolygonGenerator Porigon;
 	private EditorLoadScript RodoSucripto;
-
+	public string fileLocation;
 	
 	public static List<PolygonGenerator> savedTerrains = new List<PolygonGenerator>();
 	public static List<GameEditorData> savedPatterns = new List<GameEditorData>();
@@ -28,11 +30,27 @@ public class EditorSaveLoad  : MonoBehaviour{
 		
 		
 	}
+
+
+
+
+
+
+
+
+
+ 
+
+	public static void setDefaultFileLocation() {
+		 fileLocation = Application.dataPath + "\\Data";
+		Debug.Log("fileLocation : " + fileLocation);
+	}
+	
+
 	
 	public void Save() {
 		
-		//REMOVE THIS IF YOU WANT MULTIPLE SAVEFILES
-		//savedPatterns.Clear();
+
 		BinaryFormatter bf0 = new BinaryFormatter();
 		FileStream file0 = File.Open(Application.persistentDataPath + "/savedPatterns.gd", FileMode.Open);
 		savedPatterns = (List<GameEditorData>)bf0.Deserialize(file0);
@@ -53,7 +71,17 @@ public class EditorSaveLoad  : MonoBehaviour{
 		FileStream file = File.Create (Application.persistentDataPath + "/savedPatterns.gd");
 		bf.Serialize(file, savedPatterns);
 		file.Close();
+
+		//string path = "Assets/Resources/savedPatterns.byte";
+		BinaryFormatter bf2 = new BinaryFormatter();
+		FileStream file2 = File.Create (Application.streamingAssetsPath + "/savedPatterns.gd");
+		bf2.Serialize(file2, savedPatterns);
+		file2.Close();
+
+
+
 		print("All safe and sound! Pattern Name: "+saving.Name+ " | games saved: "+savedPatterns.Count);
+
 
 	}
 
@@ -67,11 +95,20 @@ public class EditorSaveLoad  : MonoBehaviour{
 
 	public void ClearSaved()
 	{
+
+
 		savedPatterns.Clear();
+
 		BinaryFormatter bf = new BinaryFormatter();
 		FileStream file = File.Create (Application.persistentDataPath + "/savedPatterns.gd");
 		bf.Serialize(file, savedPatterns);
 		file.Close();
+
+		BinaryFormatter bf1 = new BinaryFormatter();
+		FileStream file1 = File.Create (Application.streamingAssetsPath + "/savedPatterns.gd");
+		bf1.Serialize(file1, savedPatterns);
+		file1.Close();
+
 		print("All Clear!");
 		RodoSucripto.ClearSlotList();
 	}

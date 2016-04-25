@@ -32,7 +32,7 @@ public class WorkshopMenuControl : MonoBehaviour {
 		ManagerGame = Manager.GetComponent ("GameManager") as GameManager;
 
 		//OpenRefinery ();
-		gameObject.SetActive(false);
+		//gameObject.SetActive(false);
 
 	}
 	

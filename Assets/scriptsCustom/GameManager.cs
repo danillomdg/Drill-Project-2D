@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 [System.Serializable]
 public class GameManager : MonoBehaviour {
+
+	public string LoadedName;
+
 	private Vector3 position;
 	public GameObject player;
 	public GameCamera cam;

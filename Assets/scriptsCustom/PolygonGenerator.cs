@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary; 
@@ -6,11 +7,12 @@ using System.IO;
 
 [System.Serializable]
 public class PolygonGenerator : MonoBehaviour {
-
+	public Text debugger;
 	public bool editorMode;
 	public static PolygonGenerator porigon; 
 	public List<PolygonGenerator> savedTerrains = new List<PolygonGenerator>();
-
+	public static List<GameEditorData> savedPatterns = new List<GameEditorData>();
+	
 	public GameCamera cam;
 
 	public List<Vector3> newVertices = new List<Vector3>();
@@ -66,6 +68,9 @@ public class PolygonGenerator : MonoBehaviour {
 	private int timesUpgraded = 0;
 	private int TerrainUpgradeY = 20;
 
+
+	public WWW Peleja;
+
 	void Awake() {
 			porigon = this;
 		print ("porigonized");
@@ -85,9 +90,13 @@ public class PolygonGenerator : MonoBehaviour {
 		Minerals.Add(TerrainElement.CreateInstance(5,"bronze",0.0f,150,200));
 		Minerals.Add(TerrainElement.CreateInstance(6,"diamond",0.80f,200,70));
 		Minerals.Add(TerrainElement.CreateInstance(7,"iron",0.25f,600,200));  
-		GenTerrain(blocks, SizeX,SizeY);
-		BuildMesh();
-		UpdateMesh();
+
+
+
+			StartCoroutine(initialize());
+//		GenTerrain(blocks, SizeX,SizeY);
+//		BuildMesh();
+//		UpdateMesh();
 
 		}
 		else 
@@ -101,6 +110,8 @@ public class PolygonGenerator : MonoBehaviour {
 
 		}
 	}
+
+
 	
 	void Update(){
 
@@ -111,6 +122,27 @@ public class PolygonGenerator : MonoBehaviour {
 			update2.x = -1;
 		}
 	
+	}
+
+	public IEnumerator initialize()
+	{
+		string path = "file:///"+Application.streamingAssetsPath + "/savedPatterns.gd";
+		string uin = debugger.text;
+		debugger.text = uin+" On Windows"+"\n" ;
+		if(Application.platform == RuntimePlatform.Android)
+		{
+		
+			path =  "jar:file://" + Application.dataPath + "/assets/"+"savedPatterns.gd";
+			//path= Application.streamingAssetsPath + "/savedPatterns.gd";
+			debugger.text = uin+" On Android"+"\n" ;
+		}
+		//string path = "jar:file://" + Application.dataPath + "!/assets/";
+		Peleja = new WWW(path);
+		while(!Peleja.isDone)
+			yield return null;
+		GenTerrain(blocks, SizeX,SizeY);
+		BuildMesh();
+		UpdateMesh();
 	}
 
 
@@ -134,6 +166,94 @@ public class PolygonGenerator : MonoBehaviour {
 			
 		}
 		
+	}
+	
+
+	public static List<GameEditorData> ByteArrayToObject(byte[] arrBytes)
+	{
+		using (MemoryStream memStream = new MemoryStream())
+		{
+			BinaryFormatter binForm = new BinaryFormatter();
+			memStream.Write(arrBytes, 0, arrBytes.Length);
+			memStream.Seek(0, SeekOrigin.Begin);
+			List<GameEditorData> obj = (List<GameEditorData>)binForm.Deserialize(memStream);
+			return obj;
+		}
+	}
+
+
+
+	public void PlaceManualMade (bool namae, string name, int numba, int x, int y)
+	{
+
+		
+
+		string path = Application.streamingAssetsPath + "/savedPatterns.gd";
+		if(Application.platform == RuntimePlatform.Android)
+		{
+			path =  "jar:file://" + Application.dataPath + "/assets/"+"savedPatterns.gd";
+			//path= Application.streamingAssetsPath + "/savedPatterns.gd";
+		}
+
+		if(File.Exists(path)) 
+		{
+			debugger.text = debugger.text+" Arquivo existe"+"\n" ;
+				
+
+//				BinaryFormatter bf = new BinaryFormatter();
+//				FileStream file = File.Open(path, FileMode.Open);
+//				savedPatterns = (List<GameEditorData>)bf.Deserialize(file);
+//				file.Close();
+
+				BinaryFormatter bf = new BinaryFormatter();
+				MemoryStream file = new MemoryStream(Peleja.bytes);
+				debugger.text = debugger.text+" cheguei ate aqui"+"\n" ;
+				savedPatterns = (List<GameEditorData>)bf.Deserialize(file);
+				file.Close();
+				debugger.text = debugger.text+" sou foda?"+"\n" ;
+				
+
+
+
+				if (namae == true)
+				{
+					for (int i =0; i < savedPatterns.Count; i++)
+					{
+						if (savedPatterns[i].Name == name)
+							PlacePattern (savedPatterns[i].blocks, x, y);
+					}
+				}
+				else 
+				{
+					if (savedPatterns.Count -1 <= numba)
+					PlacePattern (savedPatterns[numba].blocks, x, y);
+				}
+		}
+		else 
+		
+		{
+			path =  Application.dataPath + "/assets/"+"savedPatterns.gd";
+			if(File.Exists(path)) debugger.text = debugger.text+" Arquivo existe"+"\n" ;
+
+			else 
+
+
+				debugger.text = debugger.text+" Arquivo NAO existe"+"\n";
+		}
+		
+	}
+
+	private void PlacePattern (byte[,] Pattern, int x, int y)
+	
+	{
+		for (int xi = 0; xi < Pattern.GetLongLength(0); xi ++)
+		{
+			for (int yi = 0; yi < Pattern.GetLongLength(1); yi ++)
+			{
+				blocks[x + xi, y + yi] = Pattern[xi,yi];
+			}
+	}
+
 	}
 
 	public void EditorUpdateMesh()
@@ -256,6 +376,8 @@ public class PolygonGenerator : MonoBehaviour {
 		//blocks[0,0]=21;
 		for (int i = 0; i < blocks.GetLength (0); i++)
 			blocks[i,blocks.GetLength(1)-1] = 1;
+
+		PlaceManualMade(true, "Oni", 0, 3, 5);
 		
 	}
 	
