@@ -20,7 +20,7 @@ public class EditorSaveLoad  : MonoBehaviour{
 	
 	public static List<PolygonGenerator> savedTerrains = new List<PolygonGenerator>();
 	public static List<GameEditorData> savedPatterns = new List<GameEditorData>();
-	
+	public static List<GameEditorDataTeste> savedPatternsTeste = new List<GameEditorDataTeste>();
 	
 	void Start()
 	{
@@ -37,19 +37,11 @@ public class EditorSaveLoad  : MonoBehaviour{
 
 
 
-
-
- 
-
-	public static void setDefaultFileLocation() {
-		 fileLocation = Application.dataPath + "\\Data";
-		Debug.Log("fileLocation : " + fileLocation);
-	}
-	
-
-	
 	public void Save() {
 		
+
+
+
 
 		BinaryFormatter bf0 = new BinaryFormatter();
 		FileStream file0 = File.Open(Application.persistentDataPath + "/savedPatterns.gd", FileMode.Open);
@@ -57,6 +49,8 @@ public class EditorSaveLoad  : MonoBehaviour{
 		file0.Close();
 
 		GameEditorData saving = new GameEditorData();
+		GameEditorDataTeste savingTeste = new GameEditorDataTeste();
+
 		saving.blocks = Porigon.blocks;
 
 		int numba = savedPatterns.Count+1;
@@ -64,19 +58,31 @@ public class EditorSaveLoad  : MonoBehaviour{
 			saving.Name = "Pattern 0"+numba;
 		else
 			saving.Name = inPutin.text;
-
-
+		savingTeste.Name = saving.Name;
+		savingTeste.blocks = ConvertToUni(Porigon.blocks);
 		savedPatterns.Add(saving);
+		savedPatternsTeste.Add(savingTeste);
+
+		//IMPORTANT:
+		//XML PART: 
+
+		string path = Application.dataPath + "/Resources/savedPatterns.xml";
+
+		GEDContainer ContainerSaving = new GEDContainer();
+		ContainerSaving.savedPatterns = savedPatternsTeste;
+
+		var serializer = new XmlSerializer(typeof(GEDContainer));
+		using(var stream = new FileStream(path, FileMode.Create))
+		{
+			serializer.Serialize(stream, ContainerSaving);
+		}
+
+
+
 		BinaryFormatter bf = new BinaryFormatter();
 		FileStream file = File.Create (Application.persistentDataPath + "/savedPatterns.gd");
 		bf.Serialize(file, savedPatterns);
 		file.Close();
-
-		//string path = "Assets/Resources/savedPatterns.byte";
-		BinaryFormatter bf2 = new BinaryFormatter();
-		FileStream file2 = File.Create (Application.streamingAssetsPath + "/savedPatterns.gd");
-		bf2.Serialize(file2, savedPatterns);
-		file2.Close();
 
 
 
@@ -84,6 +90,27 @@ public class EditorSaveLoad  : MonoBehaviour{
 
 
 	}
+
+	public byte[][] ConvertToUni(byte[,] Converting)
+	{
+		byte[][] Converted = new byte[Converting.GetLength(0)][];
+		for (int i = 0; i < Converting.GetLength(0); i++)
+		{
+			print ("i = "+i);
+			Converted[i] = new byte[Converting.GetLength(1)];
+		}
+
+		for (int xi = 0; xi < Converting.GetLength(0); xi ++)
+		{
+			for (int yi = 0; yi < Converting.GetLength(1); yi ++)
+			{
+				Converted[xi][yi] = Converting[xi,yi];
+			}
+		}
+		return Converted;
+	}
+
+
 
 	public void ClearInputin()
 	{

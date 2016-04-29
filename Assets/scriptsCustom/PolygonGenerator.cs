@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Xml;
+using System.Xml.Serialization;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary; 
@@ -11,7 +13,7 @@ public class PolygonGenerator : MonoBehaviour {
 	public bool editorMode;
 	public static PolygonGenerator porigon; 
 	public List<PolygonGenerator> savedTerrains = new List<PolygonGenerator>();
-	public static List<GameEditorData> savedPatterns = new List<GameEditorData>();
+	//public static List<GameEditorData> savedPatterns = new List<GameEditorData>();
 	
 	public GameCamera cam;
 
@@ -68,6 +70,7 @@ public class PolygonGenerator : MonoBehaviour {
 	private int timesUpgraded = 0;
 	private int TerrainUpgradeY = 20;
 
+	private float colliderChangeZ = 1;
 
 	public WWW Peleja;
 
@@ -78,8 +81,7 @@ public class PolygonGenerator : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		if (
-			editorMode == false)
+		if (editorMode == false)
 		{
 		blocks=new byte[SizeX,SizeY];
 		mesh = GetComponent<MeshFilter> ().mesh;
@@ -93,10 +95,10 @@ public class PolygonGenerator : MonoBehaviour {
 
 
 
-			StartCoroutine(initialize());
-//		GenTerrain(blocks, SizeX,SizeY);
-//		BuildMesh();
-//		UpdateMesh();
+			//StartCoroutine(initialize());
+		GenTerrain(blocks, SizeX,SizeY);
+		BuildMesh();
+		UpdateMesh();
 
 		}
 		else 
@@ -186,73 +188,49 @@ public class PolygonGenerator : MonoBehaviour {
 	public void PlaceManualMade (bool namae, string name, int numba, int x, int y)
 	{
 
-		
 
-		string path = Application.streamingAssetsPath + "/savedPatterns.gd";
-		if(Application.platform == RuntimePlatform.Android)
+		GEDContainer ola = new GEDContainer();
+		var configFile = Resources.Load("savedPatterns") as TextAsset;
+		var serializer = new XmlSerializer(typeof(GEDContainer));
+		using(var reader = new System.IO.StringReader(configFile.text))
 		{
-			path =  "jar:file://" + Application.dataPath + "/assets/"+"savedPatterns.gd";
-			//path= Application.streamingAssetsPath + "/savedPatterns.gd";
+			ola =  serializer.Deserialize(reader) as GEDContainer;
 		}
-
-		if(File.Exists(path)) 
-		{
-			debugger.text = debugger.text+" Arquivo existe"+"\n" ;
-				
-
-//				BinaryFormatter bf = new BinaryFormatter();
-//				FileStream file = File.Open(path, FileMode.Open);
-//				savedPatterns = (List<GameEditorData>)bf.Deserialize(file);
-//				file.Close();
-
-				BinaryFormatter bf = new BinaryFormatter();
-				MemoryStream file = new MemoryStream(Peleja.bytes);
-				debugger.text = debugger.text+" cheguei ate aqui"+"\n" ;
-				savedPatterns = (List<GameEditorData>)bf.Deserialize(file);
-				file.Close();
-				debugger.text = debugger.text+" sou foda?"+"\n" ;
-				
+		print ("Oi, eu sou o "+ola.savedPatterns[0].Name);
+		debugger.text = debugger.text+ola.savedPatterns[0].Name+"\n" ;
 
 
 
 				if (namae == true)
 				{
-					for (int i =0; i < savedPatterns.Count; i++)
+			for (int i =0; i < ola.savedPatterns.Count; i++)
 					{
-						if (savedPatterns[i].Name == name)
-							PlacePattern (savedPatterns[i].blocks, x, y);
+				if (ola.savedPatterns[i].Name == name)
+					PlacePattern (ola.savedPatterns[i].blocks, x, y);
 					}
 				}
 				else 
 				{
-					if (savedPatterns.Count -1 <= numba)
-					PlacePattern (savedPatterns[numba].blocks, x, y);
+			if (ola.savedPatterns.Count -1 <= numba)
+				PlacePattern (ola.savedPatterns[numba].blocks, x, y);
 				}
-		}
-		else 
-		
-		{
-			path =  Application.dataPath + "/assets/"+"savedPatterns.gd";
-			if(File.Exists(path)) debugger.text = debugger.text+" Arquivo existe"+"\n" ;
 
-			else 
-
-
-				debugger.text = debugger.text+" Arquivo NAO existe"+"\n";
-		}
 		
 	}
 
-	private void PlacePattern (byte[,] Pattern, int x, int y)
+	private void PlacePattern (byte[][] Pattern, int x, int y)
 	
 	{
-		for (int xi = 0; xi < Pattern.GetLongLength(0); xi ++)
+		print ("Pattern x: "+Pattern.Length);
+		print ("Pattern Y: "+Pattern[0].Length);
+		for (int xi = 0; xi < Pattern.Length; xi ++)
 		{
-			for (int yi = 0; yi < Pattern.GetLongLength(1); yi ++)
+			for (int yi = 0; yi < Pattern[0].Length; yi ++)
 			{
-				blocks[x + xi, y + yi] = Pattern[xi,yi];
+				blocks[x + xi, y + yi] = Pattern[xi][yi];
 			}
 	}
+
 
 	}
 
@@ -377,7 +355,7 @@ public class PolygonGenerator : MonoBehaviour {
 		for (int i = 0; i < blocks.GetLength (0); i++)
 			blocks[i,blocks.GetLength(1)-1] = 1;
 
-		PlaceManualMade(true, "Oni", 0, 3, 5);
+		PlaceManualMade(true, "Onikiri", 0, 3, 5);
 		
 	}
 	
@@ -651,8 +629,8 @@ public class PolygonGenerator : MonoBehaviour {
 		//Top
 		if(Block(x,-y-1)==0 || Block(x,-y-1)==20 || Block(x,-y-1)==22){
 
-			colVertices.Add( new Vector3 (x  ,  y  , 1));
-			colVertices.Add( new Vector3 (x + 1 ,  y  , 1));
+			colVertices.Add( new Vector3 (x  ,  y  , colliderChangeZ));
+			colVertices.Add( new Vector3 (x + 1 ,  y  , colliderChangeZ));
 			colVertices.Add( new Vector3 (x + 1 ,  y , 0 ));
 			colVertices.Add( new Vector3 (x  ,  y  , 0 ));
 			
@@ -666,8 +644,8 @@ public class PolygonGenerator : MonoBehaviour {
 		if(Block(x,-y+1)==0 || Block(x,-y+1)==20 || Block(x,-y+1)==22){
 			colVertices.Add( new Vector3 (x  ,  y -1 , 0));
 			colVertices.Add( new Vector3 (x + 1 ,  y -1 , 0));
-			colVertices.Add( new Vector3 (x + 1 ,  y -1 , 1 ));
-			colVertices.Add( new Vector3 (x  ,  y -1 , 1 ));
+			colVertices.Add( new Vector3 (x + 1 ,  y -1 , colliderChangeZ ));
+			colVertices.Add( new Vector3 (x  ,  y -1 , colliderChangeZ ));
 			
 			ColliderTriangles();
 			colCount++;
@@ -675,8 +653,8 @@ public class PolygonGenerator : MonoBehaviour {
 		
 		//left
 		if(Block(x-1,-y)==0 || Block(x-1,-y)==20 || Block(x-1,-y)==22){
-			colVertices.Add( new Vector3 (x  ,  y -1 , 1));
-			colVertices.Add( new Vector3 (x  ,  y  , 1));
+			colVertices.Add( new Vector3 (x  ,  y -1 , colliderChangeZ));
+			colVertices.Add( new Vector3 (x  ,  y  , colliderChangeZ));
 			colVertices.Add( new Vector3 (x  ,  y  , 0 ));
 			colVertices.Add( new Vector3 (x  ,  y -1 , 0 ));
 			
@@ -687,8 +665,8 @@ public class PolygonGenerator : MonoBehaviour {
 		
 		//right
 		if(Block(x+1,-y)==0 || Block(x+1,-y)==20 || Block(x+1,-y)==22){
-			colVertices.Add( new Vector3 (x +1 ,  y  , 1));
-			colVertices.Add( new Vector3 (x +1 ,  y -1 , 1));
+			colVertices.Add( new Vector3 (x +1 ,  y  , colliderChangeZ));
+			colVertices.Add( new Vector3 (x +1 ,  y -1 , colliderChangeZ));
 			colVertices.Add( new Vector3 (x +1 ,  y -1 , 0 ));
 			colVertices.Add( new Vector3 (x +1 ,  y  , 0 ));
 			

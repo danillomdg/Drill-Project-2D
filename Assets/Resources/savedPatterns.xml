@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<GEDContainer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <savedPatterns>
+    <GameEditorDataTeste Name="Onikiri">
+      <blocks>
+        <byte_x005B__x005D_>AAABAQEBAQEBAQ==</byte_x005B__x005D_>
+        <byte_x005B__x005D_>AAAVFQEBBQABAQ==</byte_x005B__x005D_>
+        <byte_x005B__x005D_>AAABFQAAAQAAAQ==</byte_x005B__x005D_>
+        <byte_x005B__x005D_>AAABAQEBAQEAAQ==</byte_x005B__x005D_>
+        <byte_x005B__x005D_>AAABAQEBAQEAAQ==</byte_x005B__x005D_>
+        <byte_x005B__x005D_>AAABFQAAAQAUAQ==</byte_x005B__x005D_>
+        <byte_x005B__x005D_>AAAVFQEBBQABAQ==</byte_x005B__x005D_>
+        <byte_x005B__x005D_>AAABAQEBAQEBAQ==</byte_x005B__x005D_>
+      </blocks>
+    </GameEditorDataTeste>
+    <GameEditorDataTeste Name="Onikiri">
+      <blocks>
+        <byte_x005B__x005D_>AAABAQEBAQEBAQ==</byte_x005B__x005D_>
+        <byte_x005B__x005D_>AAAVFQEBBQABAQ==</byte_x005B__x005D_>
+        <byte_x005B__x005D_>AAABFQAAAQAAAQ==</byte_x005B__x005D_>
+        <byte_x005B__x005D_>AAABAQEBAQEAAQ==</byte_x005B__x005D_>
+        <byte_x005B__x005D_>AAABAQEBAQEAAQ==</byte_x005B__x005D_>
+        <byte_x005B__x005D_>AAABFQAAAQAUAQ==</byte_x005B__x005D_>
+        <byte_x005B__x005D_>AAAVFQEBBQABAQ==</byte_x005B__x005D_>
+        <byte_x005B__x005D_>AAABAQEBAQEBAQ==</byte_x005B__x005D_>
+      </blocks>
+    </GameEditorDataTeste>
+  </savedPatterns>
+</GEDContainer>

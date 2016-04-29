@@ -71,17 +71,19 @@ public class GameManager : MonoBehaviour {
 		HullList.Add (new Hull(106,"Cheater",10,10.5f,"Filthy Cheater!"));
 		//createFuelTank
 		FuelTankList.Add (new FuelTank(201,"Basic Fuel Tank",200,0,"descrissaum"));
-		FuelTankList.Add (new FuelTank(202,"Big Fuel",1000,0.2f,"descrissaum"));
-		FuelTankList.Add (new FuelTank(203,"extra large size",13000,0.5f,"Seriously, you dont need this."));
-		FuelTankList.Add (new FuelTank(204,"Cheater",10,0.995f,"Filthy cheater!"));
+		FuelTankList.Add (new FuelTank(202,"Intermediate Fuel",1000,0.2f,"descrissaum"));
+		FuelTankList.Add (new FuelTank(203,"Big Fuel",4500,0.45f,"I think you need this."));
+		FuelTankList.Add (new FuelTank(204,"extra large size",13000,0.6f,"Seriously, you dont need this."));
+		FuelTankList.Add (new FuelTank(205,"Cheater",10,0.995f,"Filthy cheater!"));
 		//createDrill
-		DrillList.Add (new Drill(301,"Basic Drill",200,1,"descrissaum"));
-		DrillList.Add (new Drill(302,"Rock crusher",1000,1.6f,"descrissaum"));
+		DrillList.Add (new Drill(301,"Basic Drill",200,1f,"descrissaum"));
+		DrillList.Add (new Drill(302,"Rock crusher",1000,1.2f,"descrissaum"));
 		DrillList.Add (new Drill(303,"Rock Destroyer",13000,2.0f,"Seriously, you dont need this."));
 		//CreateCargo
 		CargoList.Add (new Cargo(401,"Basic Cargo",200,100,"descrissaum"));
-		CargoList.Add (new Cargo(402,"Bigger Cargo",1000,150,"descrissaum"));
-		CargoList.Add (new Cargo(403,"Biggest Cargo",13000,200,"Seriously, you dont need this."));
+		CargoList.Add (new Cargo(402,"intermediate Cargo",1000,150,"descrissaum"));
+		CargoList.Add (new Cargo(403,"Bigger Cargo",4500,180,"descrissaum"));
+		CargoList.Add (new Cargo(404,"Biggest Cargo",13000,250,"Seriously, you dont need this."));
 		//CreateRocket
 		RocketList.Add (new Rocket(501,"Basic Rocket",200,1,"descrissaum"));
 		RocketList.Add (new Rocket(502,"Sky traveler",1000,1.3f,"descrissaum"));

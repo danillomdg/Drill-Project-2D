@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using System.Xml;
+using System.Xml.Serialization;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic; 
@@ -85,11 +87,39 @@ public class EditorLoadScript : MonoBehaviour {
 
 	public void FinallyLoad(List<GameEditorData> Risto, int i)
 	{
-		porigon.blocks = Risto[i].blocks;	
+	//	porigon.blocks = Risto[i].blocks;	
 		ManagerEditor.GameName = Risto[i].Name;
 		porigon.EditorUpdateMesh();
 		gameObject.SetActive(false);
+
+		GEDContainer ola = new GEDContainer();
+		var configFile = Resources.Load("savedPatterns") as TextAsset;
+		var serializer = new XmlSerializer(typeof(GEDContainer));
+		using(var reader = new System.IO.StringReader(configFile.text))
+		{
+			ola =  serializer.Deserialize(reader) as GEDContainer;
+		}
+		print ("Oi, eu sou o "+ola.savedPatterns[i].Name);
+		porigon.blocks = ConvertToMulti(ola.savedPatterns[i].blocks);
+		porigon.EditorUpdateMesh();
 	}
+
+
+	public byte[,] ConvertToMulti(byte[][] Converting)
+	{
+		byte[,] Converted = new byte[Converting.Length,Converting[0].Length];
+
+		
+		for (int xi = 0; xi < Converted.GetLength(0); xi ++)
+		{
+			for (int yi = 0; yi < Converted.GetLength(1); yi ++)
+			{
+				Converted[xi,yi] = Converting[xi][yi];
+			}
+		}
+		return Converted;
+	}
+
 
 	public void ClearSlotList()
 	{
