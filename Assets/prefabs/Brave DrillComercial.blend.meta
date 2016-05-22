@@ -1,0 +1,1417 @@
+fileFormatVersion: 2
+guid: 8621fdce3afbc18458d858417cdab7b7
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: ante_L
+    100002: ante_R
+    100004: Armature_001
+    100006: Body
+    100008: Bone
+    100010: braco_L
+    100012: braco_R
+    100014: //RootNode
+    100016: cabeca
+    100018: canela_L
+    100020: canela_R
+    100022: coxa_L
+    100024: coxa_R
+    100026: Drill
+    100028: drillBase
+    100030: drillMid
+    100032: Hair1
+    100034: head
+    100036: jetBag
+    100038: mao1_L
+    100040: mao1_R
+    100042: mao2_L
+    100044: mao2_R
+    100046: mao3_L
+    100048: mao3_R
+    100050: mao4_L
+    100052: mao4_R
+    100054: ombro_L
+    100056: ombro_R
+    100058: pe1_L
+    100060: pe1_R
+    100062: pe2_L
+    100064: pe2_R
+    100066: pescoco
+    100068: quadril_L
+    100070: quadril_R
+    100072: rocket
+    100074: tronco1
+    100076: tronco2
+    400000: ante_L
+    400002: ante_R
+    400004: Armature_001
+    400006: Body
+    400008: Bone
+    400010: braco_L
+    400012: braco_R
+    400014: //RootNode
+    400016: cabeca
+    400018: canela_L
+    400020: canela_R
+    400022: coxa_L
+    400024: coxa_R
+    400026: Drill
+    400028: drillBase
+    400030: drillMid
+    400032: Hair1
+    400034: head
+    400036: jetBag
+    400038: mao1_L
+    400040: mao1_R
+    400042: mao2_L
+    400044: mao2_R
+    400046: mao3_L
+    400048: mao3_R
+    400050: mao4_L
+    400052: mao4_R
+    400054: ombro_L
+    400056: ombro_R
+    400058: pe1_L
+    400060: pe1_R
+    400062: pe2_L
+    400064: pe2_R
+    400066: pescoco
+    400068: quadril_L
+    400070: quadril_R
+    400072: rocket
+    400074: tronco1
+    400076: tronco2
+    2300000: Drill
+    2300002: drillMid
+    2300004: rocket
+    3300000: Drill
+    3300002: drillMid
+    3300004: rocket
+    4300000: Body
+    4300002: head
+    4300004: Hair1
+    4300006: jetBag
+    4300008: rocket
+    4300010: drillBase
+    4300012: Drill
+    4300014: drillMid
+    7400000: Default Take
+    7400002: ArmatureAction
+    7400004: block_001
+    7400006: jump_001
+    7400008: jumpkick_001
+    7400010: kick1_001
+    7400012: kick2_001
+    7400014: punch1_001
+    7400016: punch2_001
+    7400018: run1
+    7400020: run2
+    7400022: stand_001
+    9500000: //RootNode
+    13700000: Body
+    13700002: drillBase
+    13700004: Hair1
+    13700006: head
+    13700008: jetBag
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Default Take
+      takeName: Default Take
+      firstFrame: 161
+      lastFrame: 180
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature_001
+        weight: 1
+      - path: Armature_001/Bone
+        weight: 1
+      - path: Armature_001/Bone/tronco2
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L/mao1_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L/mao1_L/mao2_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L/mao1_L/mao2_L/mao3_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L/mao1_L/mao4_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R/mao1_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R/mao1_R/mao2_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R/mao1_R/mao2_R/mao3_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R/mao1_R/mao4_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/pescoco
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/pescoco/cabeca
+        weight: 1
+      - path: Armature_001/quadril_L
+        weight: 1
+      - path: Armature_001/quadril_L/coxa_L
+        weight: 1
+      - path: Armature_001/quadril_L/coxa_L/canela_L
+        weight: 1
+      - path: Armature_001/quadril_L/coxa_L/canela_L/pe1_L
+        weight: 1
+      - path: Armature_001/quadril_L/coxa_L/canela_L/pe1_L/pe2_L
+        weight: 1
+      - path: Armature_001/quadril_R
+        weight: 1
+      - path: Armature_001/quadril_R/coxa_R
+        weight: 1
+      - path: Armature_001/quadril_R/coxa_R/canela_R
+        weight: 1
+      - path: Armature_001/quadril_R/coxa_R/canela_R/pe1_R
+        weight: 1
+      - path: Armature_001/quadril_R/coxa_R/canela_R/pe1_R/pe2_R
+        weight: 1
+      - path: Body
+        weight: 1
+      - path: drillBase
+        weight: 1
+      - path: drillBase/Drill
+        weight: 1
+      - path: drillBase/drillMid
+        weight: 1
+      - path: Hair1
+        weight: 1
+      - path: head
+        weight: 1
+      - path: jetBag
+        weight: 1
+      - path: jetBag/rocket
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: ArmatureAction
+      takeName: ArmatureAction
+      firstFrame: -1
+      lastFrame: 0
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature_001
+        weight: 1
+      - path: Armature_001/Bone
+        weight: 1
+      - path: Armature_001/Bone/tronco2
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L/mao1_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L/mao1_L/mao2_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L/mao1_L/mao2_L/mao3_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L/mao1_L/mao4_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R/mao1_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R/mao1_R/mao2_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R/mao1_R/mao2_R/mao3_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R/mao1_R/mao4_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/pescoco
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/pescoco/cabeca
+        weight: 1
+      - path: Armature_001/quadril_L
+        weight: 1
+      - path: Armature_001/quadril_L/coxa_L
+        weight: 1
+      - path: Armature_001/quadril_L/coxa_L/canela_L
+        weight: 1
+      - path: Armature_001/quadril_L/coxa_L/canela_L/pe1_L
+        weight: 1
+      - path: Armature_001/quadril_L/coxa_L/canela_L/pe1_L/pe2_L
+        weight: 1
+      - path: Armature_001/quadril_R
+        weight: 1
+      - path: Armature_001/quadril_R/coxa_R
+        weight: 1
+      - path: Armature_001/quadril_R/coxa_R/canela_R
+        weight: 1
+      - path: Armature_001/quadril_R/coxa_R/canela_R/pe1_R
+        weight: 1
+      - path: Armature_001/quadril_R/coxa_R/canela_R/pe1_R/pe2_R
+        weight: 1
+      - path: Body
+        weight: 1
+      - path: drillBase
+        weight: 1
+      - path: drillBase/Drill
+        weight: 1
+      - path: drillBase/drillMid
+        weight: 1
+      - path: Hair1
+        weight: 1
+      - path: head
+        weight: 1
+      - path: jetBag
+        weight: 1
+      - path: jetBag/rocket
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: block_001
+      takeName: block_001
+      firstFrame: 78
+      lastFrame: 81
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature_001
+        weight: 1
+      - path: Armature_001/Bone
+        weight: 1
+      - path: Armature_001/Bone/tronco2
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L/mao1_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L/mao1_L/mao2_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L/mao1_L/mao2_L/mao3_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L/mao1_L/mao4_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R/mao1_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R/mao1_R/mao2_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R/mao1_R/mao2_R/mao3_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R/mao1_R/mao4_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/pescoco
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/pescoco/cabeca
+        weight: 1
+      - path: Armature_001/quadril_L
+        weight: 1
+      - path: Armature_001/quadril_L/coxa_L
+        weight: 1
+      - path: Armature_001/quadril_L/coxa_L/canela_L
+        weight: 1
+      - path: Armature_001/quadril_L/coxa_L/canela_L/pe1_L
+        weight: 1
+      - path: Armature_001/quadril_L/coxa_L/canela_L/pe1_L/pe2_L
+        weight: 1
+      - path: Armature_001/quadril_R
+        weight: 1
+      - path: Armature_001/quadril_R/coxa_R
+        weight: 1
+      - path: Armature_001/quadril_R/coxa_R/canela_R
+        weight: 1
+      - path: Armature_001/quadril_R/coxa_R/canela_R/pe1_R
+        weight: 1
+      - path: Armature_001/quadril_R/coxa_R/canela_R/pe1_R/pe2_R
+        weight: 1
+      - path: Body
+        weight: 1
+      - path: drillBase
+        weight: 1
+      - path: drillBase/Drill
+        weight: 1
+      - path: drillBase/drillMid
+        weight: 1
+      - path: Hair1
+        weight: 1
+      - path: head
+        weight: 1
+      - path: jetBag
+        weight: 1
+      - path: jetBag/rocket
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: jump_001
+      takeName: jump_001
+      firstFrame: 84
+      lastFrame: 102
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature_001
+        weight: 1
+      - path: Armature_001/Bone
+        weight: 1
+      - path: Armature_001/Bone/tronco2
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L/mao1_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L/mao1_L/mao2_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L/mao1_L/mao2_L/mao3_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L/mao1_L/mao4_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R/mao1_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R/mao1_R/mao2_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R/mao1_R/mao2_R/mao3_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R/mao1_R/mao4_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/pescoco
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/pescoco/cabeca
+        weight: 1
+      - path: Armature_001/quadril_L
+        weight: 1
+      - path: Armature_001/quadril_L/coxa_L
+        weight: 1
+      - path: Armature_001/quadril_L/coxa_L/canela_L
+        weight: 1
+      - path: Armature_001/quadril_L/coxa_L/canela_L/pe1_L
+        weight: 1
+      - path: Armature_001/quadril_L/coxa_L/canela_L/pe1_L/pe2_L
+        weight: 1
+      - path: Armature_001/quadril_R
+        weight: 1
+      - path: Armature_001/quadril_R/coxa_R
+        weight: 1
+      - path: Armature_001/quadril_R/coxa_R/canela_R
+        weight: 1
+      - path: Armature_001/quadril_R/coxa_R/canela_R/pe1_R
+        weight: 1
+      - path: Armature_001/quadril_R/coxa_R/canela_R/pe1_R/pe2_R
+        weight: 1
+      - path: Body
+        weight: 1
+      - path: drillBase
+        weight: 1
+      - path: drillBase/Drill
+        weight: 1
+      - path: drillBase/drillMid
+        weight: 1
+      - path: Hair1
+        weight: 1
+      - path: head
+        weight: 1
+      - path: jetBag
+        weight: 1
+      - path: jetBag/rocket
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: jumpkick_001
+      takeName: jumpkick_001
+      firstFrame: 106
+      lastFrame: 118
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature_001
+        weight: 1
+      - path: Armature_001/Bone
+        weight: 1
+      - path: Armature_001/Bone/tronco2
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L/mao1_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L/mao1_L/mao2_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L/mao1_L/mao2_L/mao3_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L/mao1_L/mao4_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R/mao1_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R/mao1_R/mao2_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R/mao1_R/mao2_R/mao3_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R/mao1_R/mao4_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/pescoco
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/pescoco/cabeca
+        weight: 1
+      - path: Armature_001/quadril_L
+        weight: 1
+      - path: Armature_001/quadril_L/coxa_L
+        weight: 1
+      - path: Armature_001/quadril_L/coxa_L/canela_L
+        weight: 1
+      - path: Armature_001/quadril_L/coxa_L/canela_L/pe1_L
+        weight: 1
+      - path: Armature_001/quadril_L/coxa_L/canela_L/pe1_L/pe2_L
+        weight: 1
+      - path: Armature_001/quadril_R
+        weight: 1
+      - path: Armature_001/quadril_R/coxa_R
+        weight: 1
+      - path: Armature_001/quadril_R/coxa_R/canela_R
+        weight: 1
+      - path: Armature_001/quadril_R/coxa_R/canela_R/pe1_R
+        weight: 1
+      - path: Armature_001/quadril_R/coxa_R/canela_R/pe1_R/pe2_R
+        weight: 1
+      - path: Body
+        weight: 1
+      - path: drillBase
+        weight: 1
+      - path: drillBase/Drill
+        weight: 1
+      - path: drillBase/drillMid
+        weight: 1
+      - path: Hair1
+        weight: 1
+      - path: head
+        weight: 1
+      - path: jetBag
+        weight: 1
+      - path: jetBag/rocket
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: kick1_001
+      takeName: kick1_001
+      firstFrame: 47
+      lastFrame: 58
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature_001
+        weight: 1
+      - path: Armature_001/Bone
+        weight: 1
+      - path: Armature_001/Bone/tronco2
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L/mao1_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L/mao1_L/mao2_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L/mao1_L/mao2_L/mao3_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L/mao1_L/mao4_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R/mao1_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R/mao1_R/mao2_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R/mao1_R/mao2_R/mao3_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R/mao1_R/mao4_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/pescoco
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/pescoco/cabeca
+        weight: 1
+      - path: Armature_001/quadril_L
+        weight: 1
+      - path: Armature_001/quadril_L/coxa_L
+        weight: 1
+      - path: Armature_001/quadril_L/coxa_L/canela_L
+        weight: 1
+      - path: Armature_001/quadril_L/coxa_L/canela_L/pe1_L
+        weight: 1
+      - path: Armature_001/quadril_L/coxa_L/canela_L/pe1_L/pe2_L
+        weight: 1
+      - path: Armature_001/quadril_R
+        weight: 1
+      - path: Armature_001/quadril_R/coxa_R
+        weight: 1
+      - path: Armature_001/quadril_R/coxa_R/canela_R
+        weight: 1
+      - path: Armature_001/quadril_R/coxa_R/canela_R/pe1_R
+        weight: 1
+      - path: Armature_001/quadril_R/coxa_R/canela_R/pe1_R/pe2_R
+        weight: 1
+      - path: Body
+        weight: 1
+      - path: drillBase
+        weight: 1
+      - path: drillBase/Drill
+        weight: 1
+      - path: drillBase/drillMid
+        weight: 1
+      - path: Hair1
+        weight: 1
+      - path: head
+        weight: 1
+      - path: jetBag
+        weight: 1
+      - path: jetBag/rocket
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: kick2_001
+      takeName: kick2_001
+      firstFrame: 61
+      lastFrame: 75
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature_001
+        weight: 1
+      - path: Armature_001/Bone
+        weight: 1
+      - path: Armature_001/Bone/tronco2
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L/mao1_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L/mao1_L/mao2_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L/mao1_L/mao2_L/mao3_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L/mao1_L/mao4_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R/mao1_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R/mao1_R/mao2_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R/mao1_R/mao2_R/mao3_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R/mao1_R/mao4_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/pescoco
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/pescoco/cabeca
+        weight: 1
+      - path: Armature_001/quadril_L
+        weight: 1
+      - path: Armature_001/quadril_L/coxa_L
+        weight: 1
+      - path: Armature_001/quadril_L/coxa_L/canela_L
+        weight: 1
+      - path: Armature_001/quadril_L/coxa_L/canela_L/pe1_L
+        weight: 1
+      - path: Armature_001/quadril_L/coxa_L/canela_L/pe1_L/pe2_L
+        weight: 1
+      - path: Armature_001/quadril_R
+        weight: 1
+      - path: Armature_001/quadril_R/coxa_R
+        weight: 1
+      - path: Armature_001/quadril_R/coxa_R/canela_R
+        weight: 1
+      - path: Armature_001/quadril_R/coxa_R/canela_R/pe1_R
+        weight: 1
+      - path: Armature_001/quadril_R/coxa_R/canela_R/pe1_R/pe2_R
+        weight: 1
+      - path: Body
+        weight: 1
+      - path: drillBase
+        weight: 1
+      - path: drillBase/Drill
+        weight: 1
+      - path: drillBase/drillMid
+        weight: 1
+      - path: Hair1
+        weight: 1
+      - path: head
+        weight: 1
+      - path: jetBag
+        weight: 1
+      - path: jetBag/rocket
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: punch1_001
+      takeName: punch1_001
+      firstFrame: 21
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature_001
+        weight: 1
+      - path: Armature_001/Bone
+        weight: 1
+      - path: Armature_001/Bone/tronco2
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L/mao1_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L/mao1_L/mao2_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L/mao1_L/mao2_L/mao3_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L/mao1_L/mao4_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R/mao1_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R/mao1_R/mao2_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R/mao1_R/mao2_R/mao3_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R/mao1_R/mao4_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/pescoco
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/pescoco/cabeca
+        weight: 1
+      - path: Armature_001/quadril_L
+        weight: 1
+      - path: Armature_001/quadril_L/coxa_L
+        weight: 1
+      - path: Armature_001/quadril_L/coxa_L/canela_L
+        weight: 1
+      - path: Armature_001/quadril_L/coxa_L/canela_L/pe1_L
+        weight: 1
+      - path: Armature_001/quadril_L/coxa_L/canela_L/pe1_L/pe2_L
+        weight: 1
+      - path: Armature_001/quadril_R
+        weight: 1
+      - path: Armature_001/quadril_R/coxa_R
+        weight: 1
+      - path: Armature_001/quadril_R/coxa_R/canela_R
+        weight: 1
+      - path: Armature_001/quadril_R/coxa_R/canela_R/pe1_R
+        weight: 1
+      - path: Armature_001/quadril_R/coxa_R/canela_R/pe1_R/pe2_R
+        weight: 1
+      - path: Body
+        weight: 1
+      - path: drillBase
+        weight: 1
+      - path: drillBase/Drill
+        weight: 1
+      - path: drillBase/drillMid
+        weight: 1
+      - path: Hair1
+        weight: 1
+      - path: head
+        weight: 1
+      - path: jetBag
+        weight: 1
+      - path: jetBag/rocket
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: punch2_001
+      takeName: punch2_001
+      firstFrame: 34
+      lastFrame: 43
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature_001
+        weight: 1
+      - path: Armature_001/Bone
+        weight: 1
+      - path: Armature_001/Bone/tronco2
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L/mao1_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L/mao1_L/mao2_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L/mao1_L/mao2_L/mao3_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L/mao1_L/mao4_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R/mao1_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R/mao1_R/mao2_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R/mao1_R/mao2_R/mao3_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R/mao1_R/mao4_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/pescoco
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/pescoco/cabeca
+        weight: 1
+      - path: Armature_001/quadril_L
+        weight: 1
+      - path: Armature_001/quadril_L/coxa_L
+        weight: 1
+      - path: Armature_001/quadril_L/coxa_L/canela_L
+        weight: 1
+      - path: Armature_001/quadril_L/coxa_L/canela_L/pe1_L
+        weight: 1
+      - path: Armature_001/quadril_L/coxa_L/canela_L/pe1_L/pe2_L
+        weight: 1
+      - path: Armature_001/quadril_R
+        weight: 1
+      - path: Armature_001/quadril_R/coxa_R
+        weight: 1
+      - path: Armature_001/quadril_R/coxa_R/canela_R
+        weight: 1
+      - path: Armature_001/quadril_R/coxa_R/canela_R/pe1_R
+        weight: 1
+      - path: Armature_001/quadril_R/coxa_R/canela_R/pe1_R/pe2_R
+        weight: 1
+      - path: Body
+        weight: 1
+      - path: drillBase
+        weight: 1
+      - path: drillBase/Drill
+        weight: 1
+      - path: drillBase/drillMid
+        weight: 1
+      - path: Hair1
+        weight: 1
+      - path: head
+        weight: 1
+      - path: jetBag
+        weight: 1
+      - path: jetBag/rocket
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: run1
+      takeName: run1
+      firstFrame: 119
+      lastFrame: 159
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature_001
+        weight: 1
+      - path: Armature_001/Bone
+        weight: 1
+      - path: Armature_001/Bone/tronco2
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L/mao1_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L/mao1_L/mao2_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L/mao1_L/mao2_L/mao3_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L/mao1_L/mao4_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R/mao1_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R/mao1_R/mao2_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R/mao1_R/mao2_R/mao3_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R/mao1_R/mao4_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/pescoco
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/pescoco/cabeca
+        weight: 1
+      - path: Armature_001/quadril_L
+        weight: 1
+      - path: Armature_001/quadril_L/coxa_L
+        weight: 1
+      - path: Armature_001/quadril_L/coxa_L/canela_L
+        weight: 1
+      - path: Armature_001/quadril_L/coxa_L/canela_L/pe1_L
+        weight: 1
+      - path: Armature_001/quadril_L/coxa_L/canela_L/pe1_L/pe2_L
+        weight: 1
+      - path: Armature_001/quadril_R
+        weight: 1
+      - path: Armature_001/quadril_R/coxa_R
+        weight: 1
+      - path: Armature_001/quadril_R/coxa_R/canela_R
+        weight: 1
+      - path: Armature_001/quadril_R/coxa_R/canela_R/pe1_R
+        weight: 1
+      - path: Armature_001/quadril_R/coxa_R/canela_R/pe1_R/pe2_R
+        weight: 1
+      - path: Body
+        weight: 1
+      - path: drillBase
+        weight: 1
+      - path: drillBase/Drill
+        weight: 1
+      - path: drillBase/drillMid
+        weight: 1
+      - path: Hair1
+        weight: 1
+      - path: head
+        weight: 1
+      - path: jetBag
+        weight: 1
+      - path: jetBag/rocket
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: run2
+      takeName: run2
+      firstFrame: 161
+      lastFrame: 180
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature_001
+        weight: 1
+      - path: Armature_001/Bone
+        weight: 1
+      - path: Armature_001/Bone/tronco2
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L/mao1_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L/mao1_L/mao2_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L/mao1_L/mao2_L/mao3_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L/mao1_L/mao4_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R/mao1_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R/mao1_R/mao2_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R/mao1_R/mao2_R/mao3_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R/mao1_R/mao4_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/pescoco
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/pescoco/cabeca
+        weight: 1
+      - path: Armature_001/quadril_L
+        weight: 1
+      - path: Armature_001/quadril_L/coxa_L
+        weight: 1
+      - path: Armature_001/quadril_L/coxa_L/canela_L
+        weight: 1
+      - path: Armature_001/quadril_L/coxa_L/canela_L/pe1_L
+        weight: 1
+      - path: Armature_001/quadril_L/coxa_L/canela_L/pe1_L/pe2_L
+        weight: 1
+      - path: Armature_001/quadril_R
+        weight: 1
+      - path: Armature_001/quadril_R/coxa_R
+        weight: 1
+      - path: Armature_001/quadril_R/coxa_R/canela_R
+        weight: 1
+      - path: Armature_001/quadril_R/coxa_R/canela_R/pe1_R
+        weight: 1
+      - path: Armature_001/quadril_R/coxa_R/canela_R/pe1_R/pe2_R
+        weight: 1
+      - path: Body
+        weight: 1
+      - path: drillBase
+        weight: 1
+      - path: drillBase/Drill
+        weight: 1
+      - path: drillBase/drillMid
+        weight: 1
+      - path: Hair1
+        weight: 1
+      - path: head
+        weight: 1
+      - path: jetBag
+        weight: 1
+      - path: jetBag/rocket
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: stand_001
+      takeName: stand_001
+      firstFrame: 0
+      lastFrame: 17
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature_001
+        weight: 1
+      - path: Armature_001/Bone
+        weight: 1
+      - path: Armature_001/Bone/tronco2
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L/mao1_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L/mao1_L/mao2_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L/mao1_L/mao2_L/mao3_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_L/braco_L/ante_L/mao1_L/mao4_L
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R/mao1_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R/mao1_R/mao2_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R/mao1_R/mao2_R/mao3_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/ombro_R/braco_R/ante_R/mao1_R/mao4_R
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/pescoco
+        weight: 1
+      - path: Armature_001/Bone/tronco2/tronco1/pescoco/cabeca
+        weight: 1
+      - path: Armature_001/quadril_L
+        weight: 1
+      - path: Armature_001/quadril_L/coxa_L
+        weight: 1
+      - path: Armature_001/quadril_L/coxa_L/canela_L
+        weight: 1
+      - path: Armature_001/quadril_L/coxa_L/canela_L/pe1_L
+        weight: 1
+      - path: Armature_001/quadril_L/coxa_L/canela_L/pe1_L/pe2_L
+        weight: 1
+      - path: Armature_001/quadril_R
+        weight: 1
+      - path: Armature_001/quadril_R/coxa_R
+        weight: 1
+      - path: Armature_001/quadril_R/coxa_R/canela_R
+        weight: 1
+      - path: Armature_001/quadril_R/coxa_R/canela_R/pe1_R
+        weight: 1
+      - path: Armature_001/quadril_R/coxa_R/canela_R/pe1_R/pe2_R
+        weight: 1
+      - path: Body
+        weight: 1
+      - path: drillBase
+        weight: 1
+      - path: drillBase/Drill
+        weight: 1
+      - path: drillBase/drillMid
+        weight: 1
+      - path: Hair1
+        weight: 1
+      - path: head
+        weight: 1
+      - path: jetBag
+        weight: 1
+      - path: jetBag/rocket
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

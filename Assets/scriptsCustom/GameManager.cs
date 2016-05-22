@@ -10,12 +10,19 @@ public class GameManager : MonoBehaviour {
 	private Vector3 position;
 	public GameObject player;
 	public GameCamera cam;
+
+	public GameObject PowerStation;
+	public GameObject Refinery;
+	public GameObject Workshop;
+	public List <Vector3> BuildLocations = new List<Vector3>();
+
 	public GameObject Megamenu;
 	public GameObject Workshopping;
 	public GameObject ButtonsController,AxisPad, BoomButton;
 	public GameObject EventTextHolder;
 	private EventText textoEvento;
 	
+
 	private PlayerStats StatusPlayer; 
 	private PlayerControl MovimentoPlayer;
 	private PlayerPhysics3D FisicaPlayer;
@@ -53,6 +60,13 @@ public class GameManager : MonoBehaviour {
 	// Use this for initialization
 
 	public int[] SpawnLevel;
+
+	void Awake()
+	{
+		BuildLocations.Add (new Vector3(PowerStation.transform.position.x,PowerStation.transform.position.y, 3) );
+		BuildLocations.Add (new Vector3(Refinery.transform.position.x,Refinery.transform.position.y, 4 ));
+		BuildLocations.Add (new Vector3(Workshop.transform.position.x,Workshop.transform.position.y, 3 ));
+	}
 
 	void Start () {
 		
@@ -119,6 +133,9 @@ public class GameManager : MonoBehaviour {
 		//DEFINE A SPAWNZONE DE MONSTERS
 		SpawnLevel = new int[10];
 		SpawnLevel[0] = 30;
+	
+		//ADICIONA A LOCALIZAÇAO DAS CONSTRUÇOES NA LISTA
+
 	}
 	
 	void Update () {
@@ -287,5 +304,6 @@ public class GameManager : MonoBehaviour {
 		StartCoroutine(textoEvento.ShowPowerUp(x));
 		textoEvento.SetAllUp();
 	}
+	
 
 }

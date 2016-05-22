@@ -18,6 +18,7 @@ public class SaveLoad  : MonoBehaviour{
 	public Canvas rosto;
 	public RectTransform myPanel;
 	public GameObject SlotElement;
+	public GameObject Parente;
 	List<GameObject> SlotList = new List<GameObject>();
 
 
@@ -192,6 +193,7 @@ public class SaveLoad  : MonoBehaviour{
 		
 		
 		print("Done! games saved: "+savedGames.Count);
+		Parente.SetActive(false);
 	}
 	
 	public void ClearSlotList()

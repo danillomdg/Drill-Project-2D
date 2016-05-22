@@ -6,6 +6,10 @@ public class Boom : MonoBehaviour {
 	private Enemy inimigo;
 	public float pretimer = 0.7f;
 	public float timer;
+
+	public GameObject baseObject;
+
+	public bool EraseBase = false;
 	float blowRadius = 1.1f;
 	float damagePowerMulti = 52; 
 	// Use this for initialization
@@ -18,8 +22,11 @@ public class Boom : MonoBehaviour {
 		timer-= Time.deltaTime;
 		if (timer <= 0)
 		{
-			gameObject.SetActive(false);
 			timer = pretimer;
+			if (EraseBase == true)
+				baseObject.SetActive(false);
+			gameObject.SetActive(false);
+
 		}
 		destruction();
 	}

@@ -14,7 +14,10 @@ public class PolygonGenerator : MonoBehaviour {
 	public static PolygonGenerator porigon; 
 	public List<PolygonGenerator> savedTerrains = new List<PolygonGenerator>();
 	//public static List<GameEditorData> savedPatterns = new List<GameEditorData>();
-	
+
+	public GameObject Manager;
+	private GameManager ManagerGame;
+
 	public GameCamera cam;
 
 	public List<Vector3> newVertices = new List<Vector3>();
@@ -34,15 +37,17 @@ public class PolygonGenerator : MonoBehaviour {
 	private Mesh mesh;
 	private MeshCollider col;
 	
-	private float tUnit = 0.25f;
+	private float tUnit = 0.20f;
+	private float tUnitx = 0.25f;
+	private float tUnity = 0.25f;
 	private Vector2 graminha = new Vector2 (0, 0);
 	private Vector2 hole = new Vector2 (3, 0);
 	private Vector2 hole2 = new Vector2 (2, 0);
 	private Vector2 tStone = new Vector2 (3, 3);
 	private Vector2 tGrass = new Vector2 (3, 1);
 
-	private Vector2 sRock = new Vector2 (3, 2);
-
+	//private Vector2 sRock = new Vector2 (3, 2);
+	private Vector2 sRock = new Vector2 (4, 1);
 
 	private Vector2 Gold = new Vector2 (0, 3);
 	private Vector2 silver = new Vector2 (1, 3);
@@ -53,6 +58,8 @@ public class PolygonGenerator : MonoBehaviour {
 	private Vector2 repairKit = new Vector2 (1, 1);
 	private Vector2 fuelTank = new Vector2 (2, 1);
 
+	private Vector2 landMine = new Vector2 (0, 2);
+	
 		
 	
 	public byte[,] blocks;
@@ -70,7 +77,7 @@ public class PolygonGenerator : MonoBehaviour {
 	private int timesUpgraded = 0;
 	private int TerrainUpgradeY = 20;
 
-	private float colliderChangeZ = 1;
+	private float colliderChangeZ = -1;
 
 	public WWW Peleja;
 
@@ -81,6 +88,7 @@ public class PolygonGenerator : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		ManagerGame = Manager.GetComponent ("GameManager") as GameManager;
 		if (editorMode == false)
 		{
 		blocks=new byte[SizeX,SizeY];
@@ -240,7 +248,8 @@ public class PolygonGenerator : MonoBehaviour {
 		UpdateMesh();
 	}
 	
-	void GenTerrain(byte[,] blocks, int x, int y){
+	void GenTerrain(byte[,] blocks, int x, int y)
+	{
 	//	blocks=new byte[x,y];    // original: 96, 128
 
 
@@ -314,6 +323,14 @@ public class PolygonGenerator : MonoBehaviour {
 			
 			EscalaCubo(blocks,Coords,52,-1);
 		}
+
+		for (int x1 = 0; x1 <=50;x1++)
+		{
+			Vector2 Coords = randomiza(0, (blocks.GetLength(0)/2) ,3, blocks.GetLength(1)/2-10,21); 
+			//	Vector2 Coords = randomiza(0, (blocks.GetLength(0)/2) ,0, (blocks.GetLength(1)/2),3);
+			
+			EscalaCubo(blocks,Coords,70,-1);
+		}
 		
 		
 
@@ -339,6 +356,15 @@ public class PolygonGenerator : MonoBehaviour {
 		
 		}
 
+		for (int x1 = 0; x1 <=350;x1++) //default: 440
+		{
+			
+			Vector2 X1 = new Vector2(3,8);
+			Vector2 Y2 = new Vector2(-4,4);
+			generateRockWall(blocks,X1,Y2,5,blocks.GetLength (1));
+			
+		}
+
 //CRIA O CHAO DI PREDA
 
 //		for(int py2=blocks.GetLength(1)-20;py2<blocks.GetLength(1)-15;py2++){
@@ -356,6 +382,7 @@ public class PolygonGenerator : MonoBehaviour {
 			blocks[i,blocks.GetLength(1)-1] = 1;
 
 		PlaceManualMade(true, "Onikiri", 0, 3, 5);
+		GerarVigas(0,-1);
 		
 	}
 	
@@ -405,6 +432,9 @@ public class PolygonGenerator : MonoBehaviour {
 
 					else if  (blocks[px,py]==52) 
 						GenSquare(px,py, fuelTank );
+
+					else if  (blocks[px,py]==70) 
+						GenSquare(px,py, landMine );
 
 					
 					
@@ -603,6 +633,11 @@ public class PolygonGenerator : MonoBehaviour {
 					else if  (blocks[px,py]==52) 
 						GenSquare(px,py, fuelTank );
 					
+					else if  (blocks[px,py]==70) 
+						GenSquare(px,py, landMine );
+
+
+					
 				}
 					else	if  (py > 1 && py < blocks.GetLength (1)-1 || blocks[px,py]==20 || blocks[px,py]==22 ) GenSquare(px,py, hole );
 					if  (py == 1) GenSquare(px,py, graminha );
@@ -678,12 +713,26 @@ public class PolygonGenerator : MonoBehaviour {
 	}
 	
 	void ColliderTriangles(){
+		if (colliderChangeZ == 1)
+		{
 		colTriangles.Add(colCount*4);
 		colTriangles.Add((colCount*4)+1);
 		colTriangles.Add((colCount*4)+3);
 		colTriangles.Add((colCount*4)+1);
 		colTriangles.Add((colCount*4)+2);
 		colTriangles.Add((colCount*4)+3);
+		}
+
+		else 
+		{
+		colTriangles.Add((colCount*4)+3);
+		colTriangles.Add((colCount*4)+2);
+		colTriangles.Add(colCount*4);
+		colTriangles.Add((colCount*4)+2);
+		colTriangles.Add((colCount*4)+1);
+		colTriangles.Add(colCount*4);
+		}
+	
 	}
 
 
@@ -875,7 +924,7 @@ public class PolygonGenerator : MonoBehaviour {
 	}
 
 
-	void generateCaves(byte[,] blocks,Vector2 MaxMinX1, Vector2 MaxMinY2, int MinPosY, int MaxPosY  ){
+	void generateCaves(byte[,] blocks,Vector2 MaxMinX1, Vector2 MaxMinY2, int MinPosY, int MaxPosY  )
 		{
 			if (MaxPosY < MinPosY || MaxPosY <= 0 )
 				MaxPosY = blocks.GetLength(1)-1;
@@ -913,13 +962,74 @@ public class PolygonGenerator : MonoBehaviour {
 			
 		}
 
+	void generateRockWall(byte[,] blocks,Vector2 MaxMinX1, Vector2 MaxMinY2, int MinPosY, int MaxPosY  )
+	{
+		if (MaxPosY < MinPosY || MaxPosY <= 0 )
+			MaxPosY = blocks.GetLength(1)-1;
+		Vector2 Coords = randomiza(0, (blocks.GetLength(0)) ,MinPosY/2,MaxPosY/2,3); 
+		
+		int RandX1 = Random.Range(Mathf.FloorToInt(MaxMinX1.x),Mathf.FloorToInt(MaxMinX1.y));
+		int RandY1 = Random.Range(0,RandX1/2);
+		
+		for (int x = 0; x<RandX1; x++){
+			
+			//CREATE MONSTERSPAWNER
+			if (x==0)
+			{
+				if (Coords.y > 30)
+				{
 
+
+					if (Coords.x+x > 0 && Coords.x+x < blocks.GetLength(0) && Coords.y > 0 && Coords.y < blocks.GetLength(1) && blocks[Mathf.FloorToInt(Coords.x+x), Mathf.FloorToInt(Coords.y)] != 0 )
+					EscalaCubo(blocks,new Vector2(Coords.x+x,Coords.y),21,-1);
+				}
+				else
+				{
+					if (Coords.x+x > 0 && Coords.x+x < blocks.GetLength(0) && Coords.y > 0 && Coords.y < blocks.GetLength(1) && blocks[Mathf.FloorToInt(Coords.x+x), Mathf.FloorToInt(Coords.y)] != 0 )
+
+					EscalaCubo(blocks,new Vector2(Coords.x+x,Coords.y),21,-1);
+				}
+				
+			}
+			else
+			{
+				if (Coords.x+x > 0 && Coords.x+x < blocks.GetLength(0) && Coords.y > 0 && Coords.y < blocks.GetLength(1) && blocks[Mathf.FloorToInt(Coords.x+x), Mathf.FloorToInt(Coords.y)] != 0 )
+					EscalaCubo(blocks,new Vector2(Coords.x+x,Coords.y),21,-1);
+			}
+		}
+		
+		int RandY2 = Random.Range((int)MaxMinY2.x,(int)MaxMinY2.y);
+		for (int y = 0; y<System.Math.Abs(RandY2); y++){
+			if(Coords.y+y*Mathf.Sign(RandY2) > 2) 
+			{
+
+				if (Coords.x+RandY1 > 0 && Coords.x+RandY1 < blocks.GetLength(0) && Coords.y+y*Mathf.Sign(RandY2) > 0 && Coords.y+y*Mathf.Sign(RandY2) < blocks.GetLength(1) && blocks[Mathf.FloorToInt(Coords.x+RandY1), Mathf.FloorToInt(Coords.y+y*Mathf.Sign(RandY2))] != 0 )
+					EscalaCubo(blocks,new Vector2(Coords.x+RandY1,Coords.y+y*Mathf.Sign(RandY2)),21,-1);
+			}
+		}
+		
 	}
+
+
 
 	public void SizeRequested(GameObject Objectum)
 	{
 		Vector2 saizo = new Vector2(SizeX,SizeY);
 		Objectum.SendMessage("GetSize",saizo);
+	}
+
+	public void GerarVigas(int x, float y ) 
+	{
+		print ("CAUNTO "+ManagerGame.BuildLocations.Count );
+		for (int i = 0; i < ManagerGame.BuildLocations.Count; i++)
+		{
+			int sizeFactor = Mathf.FloorToInt(ManagerGame.BuildLocations[i].z/2);
+				for (int j = 0; j < ManagerGame.BuildLocations[i].z; j++)
+				{
+				blocks[Mathf.FloorToInt(ManagerGame.BuildLocations[i].x) + (j-sizeFactor) + x, -1* Mathf.FloorToInt(ManagerGame.BuildLocations[i].y + y)] = 21;
+				print ("ta rolando eim");
+			}
+		}
 	}
 
 
