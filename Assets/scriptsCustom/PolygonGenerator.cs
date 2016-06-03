@@ -36,8 +36,9 @@ public class PolygonGenerator : MonoBehaviour {
 
 	private Mesh mesh;
 	private MeshCollider col;
+	private MeshRenderer yandere;
 	
-	private float tUnit = 0.20f;
+	private float tUnit = 0.25f;
 	private float tUnitx = 0.25f;
 	private float tUnity = 0.25f;
 	private Vector2 graminha = new Vector2 (0, 0);
@@ -46,8 +47,8 @@ public class PolygonGenerator : MonoBehaviour {
 	private Vector2 tStone = new Vector2 (3, 3);
 	private Vector2 tGrass = new Vector2 (3, 1);
 
-	//private Vector2 sRock = new Vector2 (3, 2);
-	private Vector2 sRock = new Vector2 (4, 1);
+	private Vector2 sRock = new Vector2 (3, 2);
+	//private Vector2 sRock = new Vector2 (4, 1);
 
 	private Vector2 Gold = new Vector2 (0, 3);
 	private Vector2 silver = new Vector2 (1, 3);
@@ -75,7 +76,7 @@ public class PolygonGenerator : MonoBehaviour {
 	public int EditorSizeY = 22;
 
 	private int timesUpgraded = 0;
-	private int TerrainUpgradeY = 20;
+	private int TerrainUpgradeY = 80;
 
 	private float colliderChangeZ = -1;
 
@@ -89,6 +90,7 @@ public class PolygonGenerator : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		ManagerGame = Manager.GetComponent ("GameManager") as GameManager;
+		yandere = gameObject.GetComponent("MeshRenderer") as MeshRenderer;
 		if (editorMode == false)
 		{
 		blocks=new byte[SizeX,SizeY];
@@ -107,6 +109,7 @@ public class PolygonGenerator : MonoBehaviour {
 		GenTerrain(blocks, SizeX,SizeY);
 		BuildMesh();
 		UpdateMesh();
+			//StartCoroutine(FadeMaterial());
 
 		}
 		else 
@@ -229,8 +232,8 @@ public class PolygonGenerator : MonoBehaviour {
 	private void PlacePattern (byte[][] Pattern, int x, int y)
 	
 	{
-		print ("Pattern x: "+Pattern.Length);
-		print ("Pattern Y: "+Pattern[0].Length);
+//		print ("Pattern x: "+Pattern.Length);
+//		print ("Pattern Y: "+Pattern[0].Length);
 		for (int xi = 0; xi < Pattern.Length; xi ++)
 		{
 			for (int yi = 0; yi < Pattern[0].Length; yi ++)
@@ -340,7 +343,7 @@ public class PolygonGenerator : MonoBehaviour {
 
 			Vector2 X1 = new Vector2(3,5);
 			Vector2 Y2 = new Vector2(-4,4);
-			generateCaves(blocks,X1,Y2,5,49);
+			generateCaves(blocks,X1,Y2,5,49, false);
 			
 		}
 
@@ -352,7 +355,7 @@ public class PolygonGenerator : MonoBehaviour {
 
 			Vector2 X1 = new Vector2(4,12);
 			Vector2 Y2 = new Vector2(-8,8);
-			generateCaves(blocks,X1,Y2,50,0);
+			generateCaves(blocks,X1,Y2,50,0, false);
 		
 		}
 
@@ -380,9 +383,10 @@ public class PolygonGenerator : MonoBehaviour {
 		//blocks[0,0]=21;
 		for (int i = 0; i < blocks.GetLength (0); i++)
 			blocks[i,blocks.GetLength(1)-1] = 1;
-
-		PlaceManualMade(true, "Onikiri", 0, 3, 5);
 		GerarVigas(0,-1);
+		
+		PlaceManualMade(true, "Onikiri", 0, 3, 5);
+
 		
 	}
 	
@@ -495,7 +499,7 @@ public class PolygonGenerator : MonoBehaviour {
 					}
 
 				}
-				print ("aptempt x: "+px+ " y : ");
+//				print ("aptempt x: "+px+ " y : ");
 				yield return null;
 			}
 
@@ -503,7 +507,7 @@ public class PolygonGenerator : MonoBehaviour {
 			
 			for (int x1 = 0; x1 <=Mathf.RoundToInt(200* divisor);x1++)
 			{
-				print ("Dividar "+Mathf.RoundToInt(200* divisor));
+//				print ("Dividar "+Mathf.RoundToInt(200* divisor));
 				Vector2 Coords = randomiza(0, (addBlocks.GetLength(0)/2) ,3, addBlocks.GetLength(1)/2,21); 
 				
 				EscalaCubo(addBlocks,Coords,21,-1);
@@ -535,14 +539,42 @@ public class PolygonGenerator : MonoBehaviour {
 				
 				Vector2 X1 = new Vector2(4,12);
 				Vector2 Y2 = new Vector2(-8,8);
-				generateCaves(addBlocks,X1,Y2,0,0);
+				generateCaves(addBlocks,X1,Y2,0,0, true);
 				if (x1 % Eufemismo == 0)
 				yield return null;
 				
 			}
 
+
+								//GENERATE TinnyCaves
+			for (int x1 = 0; x1 <=Mathf.RoundToInt(500);x1++) //default: 440
+								{
+									
+									Vector2 X1 = new Vector2(3,5);
+									Vector2 Y2 = new Vector2(-4,4);
+									generateCaves(addBlocks,X1,Y2,5,49, true);
+				if (x1 % Eufemismo == 0)
+										yield return null;
+				
+								}
+
+								
+			for (int x1 = 0; x1 <=Mathf.RoundToInt(350);x1++) //default: 440
+								{
+									
+									Vector2 X1 = new Vector2(3,8);
+									Vector2 Y2 = new Vector2(-4,4);
+				generateRockWall(addBlocks,X1,Y2,5,addBlocks.GetLength (1));
+									if (x1 % Eufemismo == 0)
+										yield return null;
+				
+								}
+
+
 			for (int i = 0; i < addBlocks.GetLength (0); i++)
 				addBlocks[i,addBlocks.GetLength(1)-1] = 1;
+
+
 
 
 			//FIM DA INSANIDADE
@@ -586,7 +618,7 @@ public class PolygonGenerator : MonoBehaviour {
 
 
 
-		for(int px=x-size;px<x+size+1;px++){
+		for(int px=x-size-2;px<x+size+2;px++){
 			for(int py=y-size;py<y+size+1;py++){
 				if (px >=0 && px < blocks.GetLength(0) && py >=0 && py <blocks.GetLength(1))
 				{
@@ -924,7 +956,7 @@ public class PolygonGenerator : MonoBehaviour {
 	}
 
 
-	void generateCaves(byte[,] blocks,Vector2 MaxMinX1, Vector2 MaxMinY2, int MinPosY, int MaxPosY  )
+	void generateCaves(byte[,] blocks,Vector2 MaxMinX1, Vector2 MaxMinY2, int MinPosY, int MaxPosY, bool monsta )
 		{
 			if (MaxPosY < MinPosY || MaxPosY <= 0 )
 				MaxPosY = blocks.GetLength(1)-1;
@@ -938,7 +970,7 @@ public class PolygonGenerator : MonoBehaviour {
 							//CREATE MONSTERSPAWNER
 							if (x==0)
 							{
-								if (Coords.y > 30)
+								if (Coords.y > 30 || monsta == true)
 								{
 									EscalaCubo(blocks,new Vector2(Coords.x+x,Coords.y),22,-1);
 								}
@@ -972,20 +1004,22 @@ public class PolygonGenerator : MonoBehaviour {
 		int RandY1 = Random.Range(0,RandX1/2);
 		
 		for (int x = 0; x<RandX1; x++){
+			int conditionZero = Random.Range (0,2);
 			
 			//CREATE MONSTERSPAWNER
 			if (x==0)
 			{
+
 				if (Coords.y > 30)
 				{
 
 
-					if (Coords.x+x > 0 && Coords.x+x < blocks.GetLength(0) && Coords.y > 0 && Coords.y < blocks.GetLength(1) && blocks[Mathf.FloorToInt(Coords.x+x), Mathf.FloorToInt(Coords.y)] != 0 )
+					if (Coords.x+x > 0 && Coords.x+x < blocks.GetLength(0) && Coords.y > 0 && Coords.y < blocks.GetLength(1) && blocks[Mathf.FloorToInt(Coords.x+x), Mathf.FloorToInt(Coords.y)] != 0 || conditionZero == 1)
 					EscalaCubo(blocks,new Vector2(Coords.x+x,Coords.y),21,-1);
 				}
 				else
 				{
-					if (Coords.x+x > 0 && Coords.x+x < blocks.GetLength(0) && Coords.y > 0 && Coords.y < blocks.GetLength(1) && blocks[Mathf.FloorToInt(Coords.x+x), Mathf.FloorToInt(Coords.y)] != 0 )
+					if (Coords.x+x > 0 && Coords.x+x < blocks.GetLength(0) && Coords.y > 0 && Coords.y < blocks.GetLength(1) && blocks[Mathf.FloorToInt(Coords.x+x), Mathf.FloorToInt(Coords.y)] != 0 || conditionZero == 1)
 
 					EscalaCubo(blocks,new Vector2(Coords.x+x,Coords.y),21,-1);
 				}
@@ -993,7 +1027,7 @@ public class PolygonGenerator : MonoBehaviour {
 			}
 			else
 			{
-				if (Coords.x+x > 0 && Coords.x+x < blocks.GetLength(0) && Coords.y > 0 && Coords.y < blocks.GetLength(1) && blocks[Mathf.FloorToInt(Coords.x+x), Mathf.FloorToInt(Coords.y)] != 0 )
+				if (Coords.x+x > 0 && Coords.x+x < blocks.GetLength(0) && Coords.y > 0 && Coords.y < blocks.GetLength(1) && blocks[Mathf.FloorToInt(Coords.x+x), Mathf.FloorToInt(Coords.y)] != 0 || conditionZero == 1)
 					EscalaCubo(blocks,new Vector2(Coords.x+x,Coords.y),21,-1);
 			}
 		}
@@ -1002,8 +1036,8 @@ public class PolygonGenerator : MonoBehaviour {
 		for (int y = 0; y<System.Math.Abs(RandY2); y++){
 			if(Coords.y+y*Mathf.Sign(RandY2) > 2) 
 			{
-
-				if (Coords.x+RandY1 > 0 && Coords.x+RandY1 < blocks.GetLength(0) && Coords.y+y*Mathf.Sign(RandY2) > 0 && Coords.y+y*Mathf.Sign(RandY2) < blocks.GetLength(1) && blocks[Mathf.FloorToInt(Coords.x+RandY1), Mathf.FloorToInt(Coords.y+y*Mathf.Sign(RandY2))] != 0 )
+				int conditionZero = Random.Range (0,2);
+				if (Coords.x+RandY1 > 0 && Coords.x+RandY1 < blocks.GetLength(0) && Coords.y+y*Mathf.Sign(RandY2) > 0 && Coords.y+y*Mathf.Sign(RandY2) < blocks.GetLength(1) && blocks[Mathf.FloorToInt(Coords.x+RandY1), Mathf.FloorToInt(Coords.y+y*Mathf.Sign(RandY2))] != 0 || conditionZero == 1)
 					EscalaCubo(blocks,new Vector2(Coords.x+RandY1,Coords.y+y*Mathf.Sign(RandY2)),21,-1);
 			}
 		}
@@ -1027,9 +1061,21 @@ public class PolygonGenerator : MonoBehaviour {
 				for (int j = 0; j < ManagerGame.BuildLocations[i].z; j++)
 				{
 				blocks[Mathf.FloorToInt(ManagerGame.BuildLocations[i].x) + (j-sizeFactor) + x, -1* Mathf.FloorToInt(ManagerGame.BuildLocations[i].y + y)] = 21;
-				print ("ta rolando eim");
+				//print ("ta rolando eim");
 			}
 		}
+	}
+
+	public IEnumerator FadeMaterial()
+	{
+		for (float f = 1f; f >= 0; f -= 0.01f) {
+			Color cora = yandere.material.color;
+			cora.a = cora.a - 0.01f;
+			yandere.material.color = cora;
+			print ("cora "+cora.a);
+			yield return new WaitForSeconds(.01f);
+		}
+
 	}
 
 

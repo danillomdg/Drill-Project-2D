@@ -40,8 +40,8 @@ public class MonsterPooler : MonoBehaviour {
 							if (i != -100)
 							{
 								
-								print ("Spawming mosta");
-								poola.pooledObjects[i].transform.position = new Vector3(px+0.5f, py-0.5f);
+//								print ("Spawming mosta");
+								poola.pooledObjects[i].transform.position = new Vector3(px+0.5f, py-0.5f,-0.01f);
 								tscript.blocks[px,-py] = 0;
 								poola.pooledObjects[i].SetActive(true);
 							}

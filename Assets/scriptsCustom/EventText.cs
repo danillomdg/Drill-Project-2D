@@ -94,7 +94,7 @@ public void lifespam()
 	}
 	public IEnumerator MovingUp()
 	{
-		print ("imhere");
+//		print ("imhere");
 		yield return new WaitForSeconds (MovingTimar);
 		movingUp = false;
 	}

@@ -46,7 +46,7 @@ public class RockPooler : MonoBehaviour {
 						if (i != -100)
 						{
 
-						poola.pooledObjects[i].transform.position = new Vector2(px+0.5f, py-0.5f);
+						poola.pooledObjects[i].transform.position = new Vector3(px+0.5f, py-0.5f,-0.01f );
 						poola.pooledObjects[i].SetActive(true);
 							}
 

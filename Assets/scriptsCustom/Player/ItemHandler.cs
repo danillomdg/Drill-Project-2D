@@ -56,21 +56,31 @@ public class ItemHandler : MonoBehaviour {
 	if (StatusPlayer.CurrentItens[StatusPlayer.SelectedItem].Quantity > 0)
 		{
 			if (StatusPlayer.SelectedItemID == 1001)
-			DropIt();
+			{
+			bool Condition = DropIt();
+				if (Condition == true )
+				{
+					StatusPlayer.CurrentItens[StatusPlayer.SelectedItem].Quantity -= 1;
+					ItemQuantity();
+				}
+			}
 			else if (StatusPlayer.SelectedItemID == 1009)
+			{
 			Teleport();
+				StatusPlayer.CurrentItens[StatusPlayer.SelectedItem].Quantity -= 1;
+				ItemQuantity();
+			}
 
 
 
-		StatusPlayer.CurrentItens[StatusPlayer.SelectedItem].Quantity -= 1;
-		ItemQuantity();
+
 	
 		}
 	}
-	public void DropIt()
+	public bool DropIt()
 	{
-		print ("Trigged");
-		bombie.DropIt();
+//		print ("Trigged");
+		return bombie.DropIt();
 	}
 
 	public void Teleport()

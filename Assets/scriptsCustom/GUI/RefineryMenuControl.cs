@@ -89,6 +89,7 @@ public class RefineryMenuControl : MonoBehaviour {
 
 	public void buttonOK()
 	{
+		tradeMoney = StatusPlayer.ouro.quantidade *StatusPlayer.ouro.preço + StatusPlayer.prata.quantidade * StatusPlayer.prata.preço + StatusPlayer.bronze.quantidade * StatusPlayer.bronze.preço + StatusPlayer.ferro.quantidade * StatusPlayer.ferro.preço + StatusPlayer.diamante.quantidade * StatusPlayer.diamante.preço;
 
 			StatusPlayer.Money += tradeMoney;
 			StatusPlayer.EmptyCargo();

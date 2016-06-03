@@ -32,6 +32,9 @@ public class PlayerStats : MonoBehaviour {
 	public float damageReducer = 0;
 	public float SpeedModifier = 1;
 	private float defaultFuelController = 1.8f;
+	[HideInInspector]
+	public float StateFuelConditioner = 1;
+	 
 
 	//PowerUpsValue
 	[HideInInspector]
@@ -117,7 +120,7 @@ public class PlayerStats : MonoBehaviour {
 		}
 
 		if (fuel > 0)
-						fuel -= defaultFuelController  * Time.deltaTime * (1-FuelTimeFactor);
+			fuel -= defaultFuelController  * Time.deltaTime * (1-FuelTimeFactor) * StateFuelConditioner;
 				else {
 						fuel = 0;
 

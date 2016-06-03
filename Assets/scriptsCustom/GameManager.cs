@@ -9,7 +9,10 @@ public class GameManager : MonoBehaviour {
 
 	private Vector3 position;
 	public GameObject player;
+
 	public GameCamera cam;
+	private float CShakeDuration = 1;
+	private float CShakeMagnitude = 1;
 
 	public GameObject PowerStation;
 	public GameObject Refinery;
@@ -66,6 +69,10 @@ public class GameManager : MonoBehaviour {
 		BuildLocations.Add (new Vector3(PowerStation.transform.position.x,PowerStation.transform.position.y, 3) );
 		BuildLocations.Add (new Vector3(Refinery.transform.position.x,Refinery.transform.position.y, 4 ));
 		BuildLocations.Add (new Vector3(Workshop.transform.position.x,Workshop.transform.position.y, 3 ));
+	
+//		print ("Risto saizo: "+BuildLocations.Count);
+//		BuildLocations.RemoveAt(1);
+//		print ("Neo saizo: "+BuildLocations.Count+" Saizo Saizo: "+BuildLocations[1].z);
 	}
 
 	void Start () {
@@ -85,9 +92,9 @@ public class GameManager : MonoBehaviour {
 		HullList.Add (new Hull(106,"Cheater",10,10.5f,"Filthy Cheater!"));
 		//createFuelTank
 		FuelTankList.Add (new FuelTank(201,"Basic Fuel Tank",200,0,"descrissaum"));
-		FuelTankList.Add (new FuelTank(202,"Intermediate Fuel",1000,0.2f,"descrissaum"));
-		FuelTankList.Add (new FuelTank(203,"Big Fuel",4500,0.45f,"I think you need this."));
-		FuelTankList.Add (new FuelTank(204,"extra large size",13000,0.6f,"Seriously, you dont need this."));
+		FuelTankList.Add (new FuelTank(202,"Intermediate Fuel",1000,0.35f,"descrissaum"));
+		FuelTankList.Add (new FuelTank(203,"Big Fuel",4500,0.55f,"I think you need this."));
+		FuelTankList.Add (new FuelTank(204,"extra large size",8500,0.75f,"Seriously, you dont need this."));
 		FuelTankList.Add (new FuelTank(205,"Cheater",10,0.995f,"Filthy cheater!"));
 		//createDrill
 		DrillList.Add (new Drill(301,"Basic Drill",200,1f,"descrissaum"));
@@ -95,9 +102,9 @@ public class GameManager : MonoBehaviour {
 		DrillList.Add (new Drill(303,"Rock Destroyer",13000,2.0f,"Seriously, you dont need this."));
 		//CreateCargo
 		CargoList.Add (new Cargo(401,"Basic Cargo",200,100,"descrissaum"));
-		CargoList.Add (new Cargo(402,"intermediate Cargo",1000,150,"descrissaum"));
-		CargoList.Add (new Cargo(403,"Bigger Cargo",4500,180,"descrissaum"));
-		CargoList.Add (new Cargo(404,"Biggest Cargo",13000,250,"Seriously, you dont need this."));
+		CargoList.Add (new Cargo(402,"intermediate Cargo",1000,180,"descrissaum"));
+		CargoList.Add (new Cargo(403,"Bigger Cargo",4500,250,"descrissaum"));
+		CargoList.Add (new Cargo(404,"Biggest Cargo",9000,350,"Seriously, you dont need this."));
 		//CreateRocket
 		RocketList.Add (new Rocket(501,"Basic Rocket",200,1,"descrissaum"));
 		RocketList.Add (new Rocket(502,"Sky traveler",1000,1.3f,"descrissaum"));
@@ -211,7 +218,8 @@ public class GameManager : MonoBehaviour {
 		if (menuSwitcherValue == 1) 
 		{
 			gameObject.SetActive (true);
-			OpenRefinery ();
+			Megalomaniaco.buttonOK();
+			//OpenRefinery ();
 		}
 		else if (menuSwitcherValue == 2)
 			ElectroHead ();	
@@ -303,6 +311,33 @@ public class GameManager : MonoBehaviour {
 	{
 		StartCoroutine(textoEvento.ShowPowerUp(x));
 		textoEvento.SetAllUp();
+	}
+
+	public IEnumerator CameraShake() {
+		
+		float elapsed = 0.0f;
+		
+		Vector3 originalCamPos = Camera.main.transform.position;
+		
+		while (elapsed < CShakeDuration) {
+			
+			elapsed += Time.deltaTime;          
+			
+			float percentComplete = elapsed / CShakeDuration;         
+			float damper = 1.0f - Mathf.Clamp(4.0f * percentComplete - 3.0f, 0.0f, 1.0f);
+			
+			// map value to [-1, 1]
+			float x = Random.value * 2.0f - 1.0f;
+			float y = Random.value * 2.0f - 1.0f;
+			x *= CShakeMagnitude * damper;
+			y *= CShakeMagnitude * damper;
+			
+			Camera.main.transform.position = new Vector3(x, y, originalCamPos.z);
+			
+			yield return null;
+		}
+		
+		Camera.main.transform.position = originalCamPos;
 	}
 	
 

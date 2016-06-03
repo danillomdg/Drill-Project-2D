@@ -445,7 +445,7 @@ public class Monster : Enemy {
 						rastro.RemoveAt(rastro.Count-1);
 						if (rastro.Count == 0)
 							rastro.Add (new Vector2(Mathf.FloorToInt(Player.transform.position.x)+0.5f,Mathf.FloorToInt(Player.transform.position.y)+0.5f) );
-						print ("yummy!");
+//						print ("yummy!");
 					}
 
 

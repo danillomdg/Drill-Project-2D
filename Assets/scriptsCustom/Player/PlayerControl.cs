@@ -85,7 +85,9 @@ public class PlayerControl : MonoBehaviour {
 		movement();
 		actions();
 		TooFar();
+		FuelControl();
 		//testCorroutine (0,transform.position.x);
+
 	}
 	
 	public IEnumerator AddDigDown(float Caunta, float Posicaum)
@@ -120,6 +122,17 @@ public class PlayerControl : MonoBehaviour {
 		if (Input.GetKeyDown("q"))
 			StatusPlayer.ToggleIten();
 	}
+	void FuelControl()
+	{
+		StatusPlayer.StateFuelConditioner = Mathf.Clamp01(Mathf.Abs (DiggingMechanics.keyX * currentspeed.x) + Mathf.Abs (DiggingMechanics.keyY * currentspeed.y));
+		if (StatusPlayer.StateFuelConditioner == 0)
+			StatusPlayer.StateFuelConditioner = 0.1f;
+		else if (digdown == true || digLR == true)
+			StatusPlayer.StateFuelConditioner += 0.3f;
+		//print("Testezinho: "+StatusPlayer.StateFuelConditioner);
+
+	}
+
 	
 
 	public void movement ()

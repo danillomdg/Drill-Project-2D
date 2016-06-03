@@ -269,7 +269,7 @@ public class DiggingMechanics : MonoBehaviour {
 
 	void ColetaMineral (int x, int y)
 	{
-		print ("CARGOW "+PlayerStats.CargoSpace);
+//		print ("CARGOW "+PlayerStats.CargoSpace);
 		byte bucetinha = tScript.blocks[x,y];
 
 		bool coletado = false;
@@ -277,7 +277,7 @@ public class DiggingMechanics : MonoBehaviour {
 		if (bucetinha == 3){
 			if (PlayerStats.CargoSpace - PlayerStats.ouro.espaco >=0) {
 			PlayerStats.ouro.quantidade += 1;
-			print ("ouro: "+PlayerStats.ouro.quantidade);
+//			print ("ouro: "+PlayerStats.ouro.quantidade);
 				PlayerStats.CargoSpace -= PlayerStats.ouro.espaco;
 			coletado = true;
 			}
@@ -286,7 +286,7 @@ public class DiggingMechanics : MonoBehaviour {
 		else 	if (bucetinha == 4){
 			if (PlayerStats.CargoSpace - PlayerStats.prata.espaco >=0) {
 			PlayerStats.prata.quantidade += 1;
-			print ("prata: "+PlayerStats.prata.quantidade);
+//			print ("prata: "+PlayerStats.prata.quantidade);
 				PlayerStats.CargoSpace -= PlayerStats.prata.espaco;
 			coletado = true;
 			}
@@ -294,7 +294,7 @@ public class DiggingMechanics : MonoBehaviour {
 		else 	if (bucetinha == 5){
 			if (PlayerStats.CargoSpace - PlayerStats.bronze.espaco >=0) {
 			PlayerStats.bronze.quantidade += 1;
-			print ("bronze: "+PlayerStats.bronze.quantidade);
+//			print ("bronze: "+PlayerStats.bronze.quantidade);
 				PlayerStats.CargoSpace -= PlayerStats.bronze.espaco;
 			coletado = true;
 			}
@@ -302,7 +302,7 @@ public class DiggingMechanics : MonoBehaviour {
 		else 	if (bucetinha == 6){
 			if (PlayerStats.CargoSpace - PlayerStats.diamante.espaco >=0) {
 			PlayerStats.diamante.quantidade += 1;
-			print ("diamante: "+PlayerStats.diamante.quantidade);
+//			print ("diamante: "+PlayerStats.diamante.quantidade);
 				PlayerStats.CargoSpace -= PlayerStats.diamante.espaco;
 			coletado = true;
 			}
@@ -310,7 +310,7 @@ public class DiggingMechanics : MonoBehaviour {
 		else 	if (bucetinha == 7){
 			if (PlayerStats.CargoSpace - PlayerStats.ferro.espaco >=0) {
 			PlayerStats.ferro.quantidade += 1;
-			print ("ferro: "+PlayerStats.ferro.quantidade);
+//			print ("ferro: "+PlayerStats.ferro.quantidade);
 				PlayerStats.CargoSpace -= PlayerStats.ferro.espaco;
 				coletado = true;
 			}

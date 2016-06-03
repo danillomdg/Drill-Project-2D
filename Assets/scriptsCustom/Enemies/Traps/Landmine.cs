@@ -51,9 +51,17 @@ public class Landmine : Enemy {
 		// MELHORAR OS CALCULOS DE DISTANCIA]
 		var distance = Vector3.Distance(Player.transform.position, transform.position);
 		
-		if (distance >= 4) 
+		if (distance >= 4)
+		{
+			if (sendoUsada == false)
 			HideMine();
-		else muitolonje = false;
+		}
+		else 
+		{
+			muitolonje = false;
+			if (distance <0.5f)
+				Bakuhatsu();
+		}
 
 		activation();
 		
@@ -66,7 +74,7 @@ public class Landmine : Enemy {
 		transform.position = new Vector3(-99f,0,-0.1f);
 		gameObject.SetActive(false);
 		muitolonje = true;
-		sendoUsada = false;
+
 	}
 
 	void activation()
@@ -78,9 +86,10 @@ public class Landmine : Enemy {
 
 			if (corida.gameObject.name != ("LandMine(Clone)") && corida.gameObject.name != ("Terrain") && corida.gameObject.name != ("Rock"))
 			{
-				print ("CORAIDINGU: "+corida.gameObject.name);
+//				print ("CORAIDINGU: "+corida.gameObject.name);
 				color.a = 255;
 				rend.material.color = color;
+				sendoUsada = true;
 				StartCoroutine(ItsATrap());
 
 				}

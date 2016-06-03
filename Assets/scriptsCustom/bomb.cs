@@ -16,7 +16,9 @@ public class bomb : MonoBehaviour {
 	public GameObject gameManager;
 	public GameObject Terrain;
 	public GameObject Player;
+
 	private PolygonGenerator tScript;
+	private GameManager ManagerGame;
 	public GameObject Baku;
 
 	//[HideInInspector]
@@ -31,6 +33,7 @@ public class bomb : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		tScript = Terrain.GetComponent("PolygonGenerator") as PolygonGenerator; 
+		ManagerGame = gameManager.GetComponent("GameManager") as GameManager;
 
 		collider = GetComponent<BoxCollider>();
 		s = collider.size;
@@ -70,20 +73,29 @@ public class bomb : MonoBehaviour {
 		dropped = false;
 		timar = preTimar;
 		Baku.transform.position = transform.position;
+		//StartCoroutine(ManagerGame.CameraShake());
 		gameObject.SetActive(false);
 		Baku.SetActive(true);
+
 	}
 
-	public void DropIt()
+	public bool DropIt()
 	{
 		
 		if (dropped == false)
 		{
-		Vector3 semiposition = Player.transform.position;
-			semiposition.z = -0.6f;
-			transform.position = semiposition;
-		gameObject.SetActive(true);
-		dropped = true;
+			if (-1 * Player.transform.position.y > 2)
+			{
+				Vector3 semiposition = Player.transform.position;
+					semiposition.z = -0.6f;
+					transform.position = semiposition;
+				gameObject.SetActive(true);
+				dropped = true;
+				return true;
+			}
+			return false;
+
 		}
+		return false;
 	}
 }

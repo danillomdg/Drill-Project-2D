@@ -49,8 +49,10 @@ public class MinePooler : MonoBehaviour {
 							if (i != -100)
 							{
 								
-								poola.pooledObjects[i].transform.position = new Vector2(px+0.44f, py-0.557f);
+								poola.pooledObjects[i].transform.position = new Vector3(px+0.44f, py-0.557f,-0.01f);
 								poola.pooledObjects[i].SetActive(true);
+								Landmine rand = poola.pooledObjects[i].GetComponent<Landmine>();
+								rand.sendoUsada = false;
 								Renderer rend = poola.pooledObjects[i].GetComponent<Renderer>();
 								//rend.enabled = false;
 								color = rend.material.color;

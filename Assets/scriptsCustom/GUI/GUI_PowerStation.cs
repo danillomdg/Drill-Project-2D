@@ -14,6 +14,7 @@ public class GUI_PowerStation : MonoBehaviour {
 	public Image MegaMenu;
 	public int teste = 0;
 	private Button bataum;
+	private Color cor;
 	
 	private new BoxCollider collider;
 	
@@ -30,6 +31,7 @@ public class GUI_PowerStation : MonoBehaviour {
 		MenuMega = MegaMenu.GetComponent ("MegaMenuControl") as RefineryMenuControl;
 		ManagerGame = gameManager.GetComponent("GameManager") as GameManager;
 		//	bataum.onClick.AddListener(() => { });
+		cor = bataum.image.color;
 		
 	}
 	
@@ -65,7 +67,7 @@ public class GUI_PowerStation : MonoBehaviour {
 		{
 			ManagerGame.menuSwitcherValue = 0;
 			ConfBox.gameObject.SetActive(false);
-			bataum.image.color = Color.white;
+			bataum.image.color = cor;
 			
 		} 
 		
